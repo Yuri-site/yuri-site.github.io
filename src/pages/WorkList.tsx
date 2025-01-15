@@ -9,7 +9,7 @@ const WorkList = () => {
     const [searchQuery, setSearchQuery] = useState(""); // 搜尋框狀態
 
     return (
-        <div className="flex flex-col items-center w-full p-4 mt-12">
+        <div className="flex flex-col items-center w-screen p-4 mt-12">
             {/* 選擇標籤 */}
             <SeasonTabs currentSeason={seasonUpdate} setSeason={setSeasonUpdate} />
 
@@ -20,7 +20,7 @@ const WorkList = () => {
                     placeholder="搜尋作品"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className=" mt-8 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500"
+                    className="min-w-12 mt-8 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500"
                 />
                 <ViewModeSwitch currentView={viewMode} setViewMode={setViewMode} />
             </div>

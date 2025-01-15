@@ -16,7 +16,7 @@ const ViewModeSwitch: React.FC<ViewModeSwitchProps> = ({ currentView, setViewMod
     return (
         <div className="flex ml-8 max-w-4xl mt-8 mr-4">
             <div className="flex items-center space-x-2">
-                <span className="text-gray-700">顯示模式：</span>
+                {/* <span className="text-gray-700">顯示模式：</span> */}
                 <button
                     className={getButtonClasses("grid")}
                     onClick={() => setViewMode("grid")}

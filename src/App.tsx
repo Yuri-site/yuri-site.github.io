@@ -1,41 +1,54 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Home from "./pages/Home";
-import WorkList from "./pages/WorkList";
-import NotFound from "./pages/NotFound";
-import Forum from "./pages/Forum";
-import Layout from "./pages/Layout";
-// 有空再實作 Skeleton
-// import { Suspense } from "react";
-// import HomeSkeleton from "./components/HomeSkeleton";
+// App.js
+import { createHashRouter, RouterProvider } from 'react-router-dom';
+import Home from './pages/Home';
+import WorkList from './pages/WorkList';
+import NotFound from './pages/NotFound';
+import Forum from './pages/Forum';
+import Layout from './pages/Layout';
+import { Suspense } from 'react';
 
-const router = createBrowserRouter([
+const router = createHashRouter([
     {
         path: "/",
-        element: <Layout />, // Use Layout to persist common components like Header
+        element: <Layout />,
         children: [
             {
                 path: "/",
-                element: <Home />,
+                element: (
+                    <Suspense fallback={<div>Loading...</div>}>
+                        <Home />
+                    </Suspense>
+                ),
             },
             {
                 path: "/worklist",
-                element: <WorkList />,
+                element: (
+                    <Suspense fallback={<div>Loading...</div>}>
+                        <WorkList />
+                    </Suspense>
+                ),
             },
             {
                 path: "/forum",
-                element: <Forum />,
+                element: (
+                    <Suspense fallback={<div>Loading...</div>}>
+                        <Forum />
+                    </Suspense>
+                ),
             },
         ],
-        errorElement: <NotFound />, // Handle errors for the Layout route
+        errorElement: <NotFound />,
     },
     {
         path: "*",
-        element: <NotFound />, // Fallback for undefined routes
+        element: <NotFound />,
     },
 ]);
 
 const App = () => {
-    return <RouterProvider router={router} />;
+    return (
+        <RouterProvider router={router} />
+    );
 };
 
 export default App;

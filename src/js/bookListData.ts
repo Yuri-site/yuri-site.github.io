@@ -43,7 +43,8 @@ export const books: Book[] = [
         "author": "ゆあま",
         "type": "中文代理漫畫",
         "publisher": "東立",
-        "status": "單行本"
+        "status": "單行本",
+        "imageUrl": ""
     },
     {
         "date": "2025/1/25",
@@ -51,7 +52,8 @@ export const books: Book[] = [
         "author": "きぃやん",
         "type": "中文代理漫畫",
         "publisher": "青文",
-        "status": "單行本"
+        "status": "單行本",
+        "imageUrl": ""
     },
     {
         "date": "2025/1/25",
@@ -59,7 +61,8 @@ export const books: Book[] = [
         "author": "竹嶋えく",
         "type": "中文代理漫畫",
         "publisher": "青文",
-        "status": "單行本"
+        "status": "單行本",
+        "imageUrl": ""
     },
     {
         "date": "2025/1/24",
@@ -67,7 +70,8 @@ export const books: Book[] = [
         "author": "팀가지",
         "type": "中文代理漫畫",
         "publisher": "長鴻",
-        "status": "單行本"
+        "status": "單行本",
+        "imageUrl": ""
     },
     {
         "date": "2025/1/23",
@@ -75,7 +79,8 @@ export const books: Book[] = [
         "author": "Spider Lily",
         "type": "中文代理漫畫",
         "publisher": "台灣角川",
-        "status": "單行本"
+        "status": "單行本",
+        "imageUrl": ""
     },
     {
         "date": "2025/1/15",
@@ -83,7 +88,8 @@ export const books: Book[] = [
         "author": "苗川采",
         "type": "中文代理漫畫",
         "publisher": "青文",
-        "status": "單行本"
+        "status": "單行本",
+        "imageUrl": ""
     },
     {
         "date": "2025/1/15",
@@ -91,7 +97,8 @@ export const books: Book[] = [
         "author": "クール教信者 木村光博",
         "type": "中文代理漫畫",
         "publisher": "青文",
-        "status": "單行本"
+        "status": "單行本",
+        "imageUrl": ""
     },
     {
         "date": "2025/1/14",
@@ -99,7 +106,8 @@ export const books: Book[] = [
         "author": "森田季節 紅緒",
         "type": "中文代理小說",
         "publisher": "尖端青文學",
-        "status": "單行本"
+        "status": "單行本",
+        "imageUrl": ""
     },
     {
         "date": "2025/1/10",
@@ -107,7 +115,8 @@ export const books: Book[] = [
         "author": "仲谷鳰",
         "type": "中文代理漫畫",
         "publisher": "台灣角川",
-        "status": "套書"
+        "status": "套書",
+        "imageUrl": ""
     },
     {
         "date": "2025/1/9",
@@ -115,7 +124,8 @@ export const books: Book[] = [
         "author": "得能正太郎",
         "type": "中文代理漫畫",
         "publisher": "東立",
-        "status": "單行本"
+        "status": "單行本",
+        "imageUrl": ""
     },
     {
         "date": "2025/1/9",
@@ -123,7 +133,8 @@ export const books: Book[] = [
         "author": "ゆざきさかおみ",
         "type": "中文代理漫畫",
         "publisher": "台灣角川",
-        "status": "單行本"
+        "status": "單行本",
+        "imageUrl": ""
     },
     {
         "date": "2025/1/8",
@@ -131,6 +142,7 @@ export const books: Book[] = [
         "author": "鴉ぴえろ きさらぎゆり",
         "type": "中文代理小說",
         "publisher": "青文",
-        "status": "單行本"
+        "status": "單行本",
+        "imageUrl": ""
     }
 ];

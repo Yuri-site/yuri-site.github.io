@@ -1,5 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import { Link, useLocation } from "react-router-dom";
+
+
 
 interface NavItem {
     text: string;
@@ -15,8 +18,14 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, navItems, dropdownTitle, dropdownItems, onClose }) => {
+    const location = useLocation();
     const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
     const [activeNav, setActiveNav] = useState<string | null>(null);
+    
+    // Update active navigation state based on pathname
+    useEffect(() => {
+        setActiveNav(location.pathname);
+    }, [location.pathname]);
 
     return (
         <>
@@ -45,19 +54,17 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, navItems, dropdownTitle, drop
                 {/* Navigation Links */}
                 <nav className="flex flex-col space-y-4 mt-4 px-6">
                     {navItems.map((item) => (
-                        <a
-                            key={item.text}
-                            href={item.link}  // Use the link property here
-                            className={`text-xl font-bold px-4 py-2 rounded-full transition-colors ${
-                                activeNav === item.text
-                                    ? "bg-white text-pink-500"
-                                    : "hover:bg-white hover:text-pink-500"
-                            }`}
-                            onMouseEnter={() => setActiveNav(item.text)}
-                            onMouseLeave={() => setActiveNav(null)}
-                        >
-                            {item.text}
-                        </a>
+                       <Link
+                                key={item.text}
+                                to={item.link}
+                                className={`text-xl font-bold px-4 py-2 rounded-full transition-colors ${
+                                    activeNav === item.link
+                                        ? "bg-white text-pink-500"
+                                        : "hover:bg-white hover:text-pink-500"
+                                }`}
+                            >
+                                {item.text}
+                        </Link>
                     ))}
 
                     {/* Dropdown Menu */}

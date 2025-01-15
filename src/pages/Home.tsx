@@ -4,7 +4,7 @@ import { carouselImages, bookSections } from "../js/homeData";
 
 const Home = () => {
     return (
-        <div className="h-[150vh]">
+        <div className="h-[150vh] max-w-screen">
             <section className="my-12">
                 <Carousel images={carouselImages} />
             </section>

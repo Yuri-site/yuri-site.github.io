@@ -27,7 +27,7 @@ const Header: React.FC<HeaderProps> = ({ logoText, navItems, dropdownTitle, drop
 
     return (
         <>
-            <header className="bg-pink-300 text-white shadow-md w-full">
+            <header className="bg-pink-300 text-white shadow-md max-w-screen w-full">
                 <div className="container mx-auto flex items-center justify-between py-4 px-6">
                     {/* Logo Section */}
                     <div className="text-2xl font-bold">
