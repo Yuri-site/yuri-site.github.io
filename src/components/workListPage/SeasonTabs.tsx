@@ -1,17 +1,18 @@
+import tabData  from "../../js/workListTabData";
+
 interface SeasonTabsProps {
     currentSeason: string;
     setSeason: (season: string) => void;
 }
 
 const SeasonTabs: React.FC<SeasonTabsProps> = ({ currentSeason, setSeason }) => {
-    const tabs = ["本季更新", "正版代理小說", "台灣原創"];
 
     return (
-        <div className="flex space-x-4 mb-4">
-            {tabs.map((tab) => (
+        <div className="flex mb-4 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {tabData.map((tab) => (
                 <button
                     key={tab}
-                    className={`px-4 py-2 rounded-lg ${
+                    className={` w-48 h-12 px-4 py-2 rounded-lg ${
                         currentSeason === tab
                             ? "bg-pink-500 text-white"
                             : "bg-gray-200 text-gray-800"

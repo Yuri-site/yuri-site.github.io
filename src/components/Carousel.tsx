@@ -6,7 +6,7 @@ interface CarouselProps {
     interval?: number; // Optional, default interval time in milliseconds
 }
 
-const Carousel: React.FC<CarouselProps> = ({ images, interval = 6000 }) => {
+const Carousel: React.FC<CarouselProps> = ({ images, interval = 3000 }) => {
     const [activeIndex, setActiveIndex] = useState(0);
     const startX = useRef(0); // Starting X position of the drag
     const isDragging = useRef(false); // Flag to check if dragging is active
