@@ -1,6 +1,6 @@
 import Carousel from "../components/Carousel";
 import BookSection from "../components/BookSection";
-import { carouselImages, bookSections } from "../js/homeData";
+import { carouselImages, bookSections } from "../data/homeData";
 
 const Home = () => {
     return (

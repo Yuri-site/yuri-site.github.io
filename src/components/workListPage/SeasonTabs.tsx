@@ -1,4 +1,4 @@
-import tabData  from "../../js/workListTabData";
+import tabData  from "../../data/workListTabData";
 
 interface SeasonTabsProps {
     currentSeason: string;
