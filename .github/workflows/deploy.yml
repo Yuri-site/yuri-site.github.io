@@ -1,9 +1,9 @@
-name: Deploy to GitHub Pages
+name: Deploy React App to GitHub Pages
 
 on:
   push:
     branches:
-      - main  # Trigger deployment on push to the main branch
+      - main  # 當你推送到 main 分支時觸發部署
 
 jobs:
   deploy:
@@ -18,7 +18,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'  # Use Node.js version 18 or adjust based on your project
+          node-version: '18'
 
       # Install dependencies
       - name: Install dependencies
@@ -34,6 +34,6 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: gh-pages  # The branch that GitHub Pages uses
-          folder: dist  # The folder containing the built files (adjust if necessary)
-          token: ${{ secrets.GITHUB_TOKEN }}  # Use the default GitHub token for authentication
+          branch: gh-pages  # 部署到 gh-pages 分支
+          folder: dist  # 輸出目錄
+          token: ${{ secrets.GITHUB_TOKEN }}  # 使用預設的 GitHub Token 進行身份驗證

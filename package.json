@@ -3,14 +3,17 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://yuri-site.github.io/Frontend/",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.7.2",
+    "gh-pages": "^6.3.0",
     "prop-types": "^15.8.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
