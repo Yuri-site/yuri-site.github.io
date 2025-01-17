@@ -2,7 +2,7 @@ import React from "react";
 import BookCardList from "./BookCardList"; // 假設這是已經存在的組件
 import BookListTable from "./BookListTable"; // 引入新組件
 // books data imported here, assuming it's defined somewhere
-import { books } from "../../js/bookListData"; 
+import { books } from "../../data/bookListData"; 
 
 interface BookListProps {
     viewMode: "grid" | "list";
