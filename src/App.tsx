@@ -6,6 +6,7 @@ import NotFound from './pages/NotFound';
 import Forum from './pages/Forum';
 import Layout from './pages/Layout';
 import { Suspense } from 'react';
+import Editor from './pages/Editor';
 
 const router = createHashRouter([
     {
@@ -33,6 +34,14 @@ const router = createHashRouter([
                 element: (
                     <Suspense fallback={<div>Loading...</div>}>
                         <Forum />
+                    </Suspense>
+                ),
+            },
+            {
+                path: "/editor",
+                element: (
+                    <Suspense fallback={<div>Loading...</div>}>
+                        <Editor />
                     </Suspense>
                 ),
             },

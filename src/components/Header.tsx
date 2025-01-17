@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import { Link, useLocation } from "react-router-dom";
 import Sidebar from "./Sidebar";
@@ -19,11 +19,40 @@ const Header: React.FC<HeaderProps> = ({ logoText, navItems, dropdownTitle, drop
     const location = useLocation();
     const [activeNav, setActiveNav] = useState<string | null>(null);
     const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
+    const [isDropdownVisible, setIsDropdownVisible] = useState<boolean>(false);
+    
+    const dropdownRef = useRef<HTMLDivElement | null>(null); // 用來存儲 dropdown 的參考
+    const dropdownButtonRef = useRef<HTMLButtonElement | null>(null); // 用來存儲 dropdown button 的參考
 
     // Update active navigation state based on pathname
     useEffect(() => {
         setActiveNav(location.pathname);
     }, [location.pathname]);
+
+    // 點擊 dropdown menu 以外的地方隱藏 dropdown
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (
+                dropdownRef.current && !dropdownRef.current.contains(event.target as Node) &&
+                dropdownButtonRef.current && !dropdownButtonRef.current.contains(event.target as Node)
+            ) {
+                setIsDropdownVisible(false);
+            }
+        };
+
+        // 當點擊任何地方時觸發
+        document.addEventListener("mousedown", handleClickOutside);
+
+        // 清理事件監聽器
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
+
+    // Toggle dropdown visibility on title click
+    const handleDropdownToggle = () => {
+        setIsDropdownVisible((prevState) => !prevState);
+    };
 
     return (
         <>
@@ -59,23 +88,21 @@ const Header: React.FC<HeaderProps> = ({ logoText, navItems, dropdownTitle, drop
                         ))}
 
                         {/* Dropdown Menu */}
-                        <div
-                            className="text-xl font-bold relative group"
-                            onMouseEnter={() => setActiveNav(dropdownTitle)}
-                            onMouseLeave={() => setActiveNav(null)}
-                        >
+                        <div className="text-xl font-bold relative" ref={dropdownRef}>
                             <button
-                                className={`px-4 py-2 rounded-full transition-colors ${
-                                    activeNav === dropdownTitle
+                                onClick={handleDropdownToggle}
+                                ref={dropdownButtonRef} // 綁定到 button 上
+                                className={`px-4 py-2 rounded-full transition-colors flex items-center ${
+                                    isDropdownVisible
                                         ? "bg-white text-pink-500"
                                         : "hover:bg-white hover:text-pink-500"
-                                } flex items-center`}
+                                }`}
                             >
                                 {dropdownTitle} <span className="ml-1">▼</span>
                             </button>
                             <div
-                                className={`text-lg absolute bg-white text-gray-800 rounded shadow-md mt-2 w-40 transition-opacity ${
-                                    activeNav === dropdownTitle ? "opacity-100" : "opacity-0"
+                                className={`text-lg absolute bg-white text-gray-800 rounded shadow-md mt-2 w-40 transition-all ${
+                                    isDropdownVisible ? "block opacity-100" : "hidden opacity-0"
                                 }`}
                             >
                                 {dropdownItems.map((item) => (

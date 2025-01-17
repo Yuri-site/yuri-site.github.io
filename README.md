@@ -5,6 +5,7 @@
 * Tailwind CSS
 * Fontawesome
 * Zustand
+* Google Sheets + Apps Script
 
 ## Data type
 ```ts
@@ -16,6 +17,7 @@ export interface Book {
     publisher: string;
     status: string;
     imageUrl: string;
+    notes: string
     // category: string;
 }
 ```

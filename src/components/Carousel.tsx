@@ -90,7 +90,7 @@ const Carousel: React.FC<CarouselProps> = ({ images, interval = 3000 }) => {
                     className=" h-96 object-cover w-full"
                 />
                 <div className="absolute bottom-0 left-0 w-full bg-gray-800 bg-opacity-50 text-white text-center py-2">
-                    新書資訊
+                    新書資訊, 站方推薦
                 </div>
             </div>
 

@@ -6,11 +6,11 @@ export const carouselImages: string[] = [
 
 export const bookSections: { title: string; items: string[] }[] = [
     {
-        title: "百合作品資訊",
+        title: "近期新出版",
         items: ["作品1", "作品2", "作品3", "作品4", "作品5"],
     },
     {
-        title: "百合作品資訊",
+        title: "連載中的作品",
         items: ["作品6", "作品7", "作品8", "作品9", "作品10"],
     },
 ];

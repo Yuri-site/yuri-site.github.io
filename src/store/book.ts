@@ -10,3 +10,4 @@ export const useBookStore = create<BookState>((set) => ({
     selectedBook: null,
     setSelectedBook: (book) => set({ selectedBook: book }),
 }));
+

@@ -1,0 +1,33 @@
+[
+    {
+        "id": "1",
+        "title": "本季更新", 
+        "data_link": "https://yuri-site.github.io/data/books_1.json"
+    },
+    {
+        "id": "2",
+        "title": "中文正版代理漫畫", 
+        "data_link": "https://yuri-site.github.io/data/books_2.json"
+    },
+    {
+        "id": "3",
+        "title": "中文正版代理小說", 
+        "data_link": "https://yuri-site.github.io/data/books_3.json"
+    },
+    {
+        "id": "4",
+        "title": "台灣原創百合(商業)", 
+        "data_link": "https://yuri-site.github.io/data/books_4.json"
+    },
+    {
+        "id": "5",
+        "title": "台灣原創百合(非商業)", 
+        "data_link": "https://yuri-site.github.io/data/books_5.json"
+    },
+    {
+        "id": "6",
+        "title": "中文代理及授權進度", 
+        "data_link": "https://yuri-site.github.io/data/books_6.json"
+    }
+    
+]

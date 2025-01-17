@@ -1,17 +1,16 @@
 import { useState } from "react";
-import SeasonTabs from "../components/workListPage/SeasonTabs";
+import BooksTabs from "../components/workListPage/BooksTabs";
 import ViewModeSwitch from "../components/workListPage/ViewModeSwitch";
 import BookList from "../components/workListPage/BookList";
 
 const WorkList = () => {
     const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
-    const [seasonUpdate, setSeasonUpdate] = useState("本季更新");
     const [searchQuery, setSearchQuery] = useState(""); // 搜尋框狀態
 
     return (
         <div className="flex flex-col items-center w-screen p-4 mt-12">
             {/* 選擇標籤 */}
-            <SeasonTabs currentSeason={seasonUpdate} setSeason={setSeasonUpdate} />
+            <BooksTabs />
 
             {/* Grid/List 切換與搜尋框 */}
             <div className="flex items-center justify-end w-full max-w-4xl mb-4">
