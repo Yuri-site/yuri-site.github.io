@@ -7,6 +7,9 @@ import BookDetailCard from "./BookDetailCard"; // Import the BookDetail componen
 interface BookListTableProps {
     filteredBooks: Book[];
 }
+const truncateText = (text: string, maxLength: number): string => {
+    return text.length > maxLength ? `${text.slice(0, maxLength)}...` : text;
+};
 
 const BookListTable: React.FC<BookListTableProps> = ({ filteredBooks }) => {
     // Use Zustand store to manage the selectedBook state
@@ -42,10 +45,10 @@ const BookListTable: React.FC<BookListTableProps> = ({ filteredBooks }) => {
                                     {book.date}
                                 </td>
                                 <td className="border border-gray-300 px-4 py-2">
-                                    {book.title}
+                                    {truncateText(book.title, 20)}
                                 </td>
                                 <td className="border border-gray-300 px-4 py-2">
-                                    {book.author}
+                                    {truncateText(book.author, 8)}
                                 </td>
                                 <td className="border border-gray-300 px-4 py-2 hidden sm:table-cell">
                                     {book.type}

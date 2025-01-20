@@ -32,6 +32,18 @@ const JsonEditor: React.FC = () => {
         setJsonData(updatedData);
     };
 
+    // 新增一個欄位
+    const addColumn = () => {
+        const newColumnName = prompt("請輸入新的欄位名稱") || "";
+        if (newColumnName) {
+            const updatedData = jsonData.map((row) => ({
+                ...row,
+                [newColumnName]: "", // 新增的欄位預設為空
+            }));
+            setJsonData(updatedData);
+        }
+    };
+
     // 生成 JSON 字串
     const generateJson = () => {
         setJsonOutput(JSON.stringify(jsonData, null, 4));
@@ -101,6 +113,12 @@ const JsonEditor: React.FC = () => {
                 onClick={addRow}
             >
                 新增列
+            </button>
+            <button
+                className="bg-yellow-500 text-white px-4 py-2 rounded mr-2"
+                onClick={addColumn}
+            >
+                新增欄位
             </button>
             <button
                 className="bg-blue-500 text-white px-4 py-2 rounded"

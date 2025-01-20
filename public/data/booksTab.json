@@ -2,32 +2,44 @@
     {
         "id": "1",
         "title": "本季更新", 
-        "data_link": "https://yuri-site.github.io/data/books_1.json"
+        "data_link": "https://yuri-site.github.io/data/books_1.json",
+        "col_tabs": ["出版日期", "書名", "作者", "類型", "出版社／平台", "狀態", "備註"]
     },
     {
         "id": "2",
         "title": "中文正版代理漫畫", 
-        "data_link": "https://yuri-site.github.io/data/books_2.json"
+        "data_link": "https://yuri-site.github.io/data/books_2.json",
+        "col_tabs": ["最後出版日期", "書名", "作者", "出版社／平台", "台版狀態", "備註"]
     },
     {
         "id": "3",
         "title": "中文正版代理小說", 
-        "data_link": "https://yuri-site.github.io/data/books_3.json"
+        "data_link": "https://yuri-site.github.io/data/books_3.json",
+        "col_tabs": ["最後出版日期", "書名", "作者", "出版社／平台", "台版狀態", "備註1", "備註2"]
     },
     {
         "id": "4",
         "title": "台灣原創百合(商業)", 
-        "data_link": "https://yuri-site.github.io/data/books_4.json"
+        "data_link": "https://yuri-site.github.io/data/books_4.json",
+        "col_tabs": ["出版／上線日", "書名", "作者", "類型", "出版社／平台", "更新狀態", "備註"]
     },
     {
         "id": "5",
         "title": "台灣原創百合(非商業)", 
-        "data_link": "https://yuri-site.github.io/data/books_5.json"
+        "data_link": "https://yuri-site.github.io/data/books_5.json",
+        "col_tabs": ["出版／上線日", "書名", "作者", "類型", "閱讀管道", "更新狀態", "備註"]
     },
     {
         "id": "6",
-        "title": "中文代理及授權進度", 
-        "data_link": "https://yuri-site.github.io/data/books_6.json"
+        "title": "中文代理及授權進度-已代理但未進出版排程", 
+        "data_link": "https://yuri-site.github.io/data/books_6.json",
+        "col_tabs": ["取得授權時間", "作品", "出版社", "進度", "閱讀管道", "更新狀態", "備註"]
+    },
+    {
+        "id": "7",
+        "title": "中文代理及授權進度-已代理作品續集授權進度", 
+        "data_link": "https://yuri-site.github.io/data/books_7.json",
+        "col_tabs": ["取得授權時間", "作品", "出版社", "進度", "閱讀管道", "更新狀態", "備註"]
     }
     
 ]

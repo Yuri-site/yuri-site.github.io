@@ -4,7 +4,7 @@ import ViewModeSwitch from "../components/workListPage/ViewModeSwitch";
 import BookList from "../components/workListPage/BookList";
 
 const WorkList = () => {
-    const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+    const [viewMode, setViewMode] = useState<"grid" | "list">("list");
     const [searchQuery, setSearchQuery] = useState(""); // 搜尋框狀態
 
     return (

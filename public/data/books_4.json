@@ -1,0 +1,830 @@
+[
+    {
+        "date": "2025/12/31",
+        "title": "在流量引爆以後",
+        "author": "琉璃",
+        "publisher": "千魚娛樂",
+        "status": "未出版",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2025/5/1",
+        "title": "因為你是第一次",
+        "author": "琉璃",
+        "publisher": "千魚娛樂",
+        "status": "未出版",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2025/1/31",
+        "title": "蛇吻預警",
+        "author": "漠星",
+        "publisher": "POPO原創",
+        "status": "未出版",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2025/1/20",
+        "title": "我的後輩老是說喜歡我（全）",
+        "author": "桐真",
+        "publisher": "東立",
+        "status": "單行本",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/12/19",
+        "title": "一萬個扭曲的祝福（共三集）",
+        "author": "八千子",
+        "publisher": "台灣角川",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/11/19",
+        "title": "如汐《女人香系列：延伸故事》",
+        "author": "安謹",
+        "publisher": "北極之光",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/11/19",
+        "title": "緣情書",
+        "author": "安謹",
+        "publisher": "北極之光",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/11/19",
+        "title": "落日",
+        "author": "安謹",
+        "publisher": "北極之光",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/11/19",
+        "title": "心鎖修訂版",
+        "author": "安謹",
+        "publisher": "北極之光",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/11/19",
+        "title": "有生之年修訂版",
+        "author": "安謹",
+        "publisher": "北極之光",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/11/19",
+        "title": "無垠",
+        "author": "安謹",
+        "publisher": "北極之光",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/11/19",
+        "title": "夜花",
+        "author": "秋陽",
+        "publisher": "北極之光",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/11/19",
+        "title": "追心《心流系列 01》",
+        "author": "秋陽",
+        "publisher": "北極之光",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/11/19",
+        "title": "終將愛妳《心流系列 02》",
+        "author": "秋陽",
+        "publisher": "北極之光",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/11/19",
+        "title": "愛情路上《心流系列 03》",
+        "author": "秋陽",
+        "publisher": "北極之光",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/11/19",
+        "title": "非妳不可《心流系列 04》",
+        "author": "秋陽",
+        "publisher": "北極之光",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/11/19",
+        "title": "蔚藍心海《日光海洋系列 01》",
+        "author": "秋陽",
+        "publisher": "北極之光",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/11/19",
+        "title": "烈日當空《日光海洋系列 02》",
+        "author": "秋陽",
+        "publisher": "北極之光",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/11/19",
+        "title": "雨後初霽《日光海洋系列 03》",
+        "author": "秋陽",
+        "publisher": "北極之光",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/11/19",
+        "title": "夏夜晚風《日光海洋系列 04》",
+        "author": "秋陽",
+        "publisher": "北極之光",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/11/19",
+        "title": "風輕日暖《日光海洋系列 05》",
+        "author": "秋陽",
+        "publisher": "北極之光",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/11/19",
+        "title": "晴空萬里《日光海洋系列 06》",
+        "author": "秋陽",
+        "publisher": "北極之光",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/11/19",
+        "title": "十六月圓夜《星夜沙漠系列 01》",
+        "author": "秋陽",
+        "publisher": "北極之光",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/11/19",
+        "title": "鈴蘭花園，再回來的幸福《星夜沙漠系列 02》",
+        "author": "秋陽",
+        "publisher": "北極之光",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/11/19",
+        "title": "黑貓旅程，如風般的愛戀《星夜沙漠系列 03》",
+        "author": "秋陽",
+        "publisher": "北極之光",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/11/19",
+        "title": "點點星火《雲海草原系列 01》",
+        "author": "秋陽",
+        "publisher": "北極之光",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/11/19",
+        "title": "櫻花翩翩《雲海草原系列 02》",
+        "author": "秋陽",
+        "publisher": "北極之光",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/11/19",
+        "title": "花雨飛舞《雲海草原系列 03》",
+        "author": "秋陽",
+        "publisher": "北極之光",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/11/19",
+        "title": "風吹樹梢《雲海草原系列 04》",
+        "author": "秋陽",
+        "publisher": "北極之光",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/11/19",
+        "title": "陽和春暖《雲海草原系列 05》",
+        "author": "秋陽",
+        "publisher": "北極之光",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/11/19",
+        "title": "晴時多雲《雲海草原系列 06》",
+        "author": "秋陽",
+        "publisher": "北極之光",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/11/19",
+        "title": "擁抱冬天《雲海草原系列 07》",
+        "author": "秋陽",
+        "publisher": "北極之光",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/11/19",
+        "title": "抒情海洋",
+        "author": "温暖暖",
+        "publisher": "北極之光",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/11/19",
+        "title": "情圓《前世今生之亞馬遜系列01》",
+        "author": "温暖暖",
+        "publisher": "北極之光",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/11/19",
+        "title": "情衷《前世今生之亞馬遜系列 02》",
+        "author": "温暖暖",
+        "publisher": "北極之光",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/11/13",
+        "title": "練習相愛的時光",
+        "author": "刃心",
+        "publisher": "城邦原創",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/11/13",
+        "title": "今夜有雨",
+        "author": "飛夜",
+        "publisher": "城邦原創",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/11/13",
+        "title": "等待海浪歸來的那天",
+        "author": "喬木",
+        "publisher": "城邦原創",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/11/13",
+        "title": "養蠱的竅門",
+        "author": "黑白沙漠狐",
+        "publisher": "城邦原創",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/11/13",
+        "title": "貓的魚缸",
+        "author": "貓草",
+        "publisher": "城邦原創",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/11/6",
+        "title": "室友雀兒喜的夜詠",
+        "author": "蕗舟",
+        "publisher": "要有光",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/10/31",
+        "title": "王途",
+        "author": "月小伊",
+        "publisher": "集合",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/9/24",
+        "title": "尚未奏響的世界末日序曲",
+        "author": "Irene309",
+        "publisher": "角角者",
+        "status": "連載中",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/9/6",
+        "title": "月夜星光【試閱版】",
+        "author": "秋陽",
+        "publisher": "北極之光",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/8/31",
+        "title": "死鬼萬事屋",
+        "author": "姬雪",
+        "publisher": "城邦原創",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/8/22",
+        "title": "籬鹿《飛螢流星系列 02》",
+        "author": "秋陽",
+        "publisher": "北極之光",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/7/28",
+        "title": "冬城修訂版",
+        "author": "安謹",
+        "publisher": "北極之光",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/7/28",
+        "title": "近曙",
+        "author": "周桂音",
+        "publisher": "北極之光",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/7/28",
+        "title": "熱氣球之戀《飛螢流星系列 01》",
+        "author": "秋陽",
+        "publisher": "北極之光",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/7/25",
+        "title": "安然如素",
+        "author": "向然",
+        "publisher": "北極之光",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/7/25",
+        "title": "朝露修訂版",
+        "author": "安謹",
+        "publisher": "北極之光",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/7/25",
+        "title": "渡夜",
+        "author": "安謹",
+        "publisher": "北極之光",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/7/25",
+        "title": "留燈",
+        "author": "安謹",
+        "publisher": "北極之光",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/7/25",
+        "title": "孟荃 Ⅰ 初戀《女人香系列：延伸故事》",
+        "author": "秋陽",
+        "publisher": "北極之光",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/7/25",
+        "title": "曼露情 I 最初《武俠系列前傳 02》",
+        "author": "秋陽",
+        "publisher": "北極之光",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/7/25",
+        "title": "秋霜花月《日光海洋系列 08》",
+        "author": "秋陽",
+        "publisher": "北極之光",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/7/25",
+        "title": "甜味輕輕《日光海洋系列 07》",
+        "author": "秋陽",
+        "publisher": "北極之光",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/7/25",
+        "title": "夏日戀情《月光雨林系列 02》",
+        "author": "秋陽",
+        "publisher": "北極之光",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/7/25",
+        "title": "懂妳、懂我《武俠系列番外篇》",
+        "author": "秋陽",
+        "publisher": "北極之光",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/7/25",
+        "title": "春光如海《月光雨林系列 01》",
+        "author": "秋陽",
+        "publisher": "北極之光",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/7/25",
+        "title": "雨中百合《雲海草原系列 09》",
+        "author": "秋陽",
+        "publisher": "北極之光",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/7/25",
+        "title": "慢慢喜歡妳《雲海草原系列 10》",
+        "author": "藍斯",
+        "publisher": "北極之光",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/6/26",
+        "title": "夏日計劃（共三集）",
+        "author": "Irene309",
+        "publisher": "台灣角川",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/6/19",
+        "title": "今晚，星光依然燦爛",
+        "author": "非逆",
+        "publisher": "台灣角川",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/5/30",
+        "title": "她的囚徒",
+        "author": "黑白沙漠狐",
+        "publisher": "城邦原創",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/2/29",
+        "title": "謊言彼岸的妳",
+        "author": "希澄",
+        "publisher": "MOJOIN",
+        "status": "連載中",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2024/1/22",
+        "title": "星念 Journey of Faith",
+        "author": "月小伊",
+        "publisher": "集合",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2023/11/23",
+        "title": "她的唇，她的吻",
+        "author": "希澄",
+        "publisher": "台灣角川",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2023/10/6",
+        "title": "在血櫻樹下親吻妳的淚",
+        "author": "風說",
+        "publisher": "台灣角川",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2023/7/15",
+        "title": "不自由戀愛",
+        "author": "以心",
+        "publisher": "城邦原創",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2023/7/15",
+        "title": "江潭如墨",
+        "author": "晉骨",
+        "publisher": "城邦原創",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2023/6/1",
+        "title": "玫瑰與黑皮諾",
+        "author": "琉璃",
+        "publisher": "POPO原創",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2023/5/17",
+        "title": "地府犯罪調查中心（全三卷）",
+        "author": "馥閒庭",
+        "publisher": "三日月書版",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2023/4/29",
+        "title": "向陽之處",
+        "author": "貓草",
+        "publisher": "城邦原創",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2023/4/26",
+        "title": "百合撩亂★兔姬臨杏 ～不○○○就出不去的房間～",
+        "author": "八千子",
+        "publisher": "台灣角川",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2023/1/13",
+        "title": "裏台北外送",
+        "author": "木几",
+        "publisher": "尖端",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2022/6/2",
+        "title": "寫給妳的那一個故事",
+        "author": "希澄",
+        "publisher": "城邦原創",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2022/4/7",
+        "title": "花開時節",
+        "author": "楊双子",
+        "publisher": "奇異果文創",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2021/12/18",
+        "title": "不小心約到上司怎麼辦",
+        "author": "希澄",
+        "publisher": "城邦原創",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2021/1/28",
+        "title": "日光為鄰",
+        "author": "希澄",
+        "publisher": "城邦原創",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2020/11/7",
+        "title": "帥T空姐",
+        "author": "三映、金禾創意、睡相後移",
+        "publisher": "蓋亞文化",
+        "status": "已完結",
+        "type": "漫畫",
+        "imageUrl": ""
+    },
+    {
+        "date": "2020/11/6",
+        "title": "血色夜想曲",
+        "author": "月小伊",
+        "publisher": "集合",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2020/10/17",
+        "title": "與妳的寂寞花火",
+        "author": "希澄",
+        "publisher": "城邦原創",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2020/7/29",
+        "title": "綺譚花物語",
+        "author": "楊双子、星期一回收日",
+        "publisher": "台灣東販",
+        "status": "已完結",
+        "type": "漫畫",
+        "imageUrl": ""
+    },
+    {
+        "date": "2020/7/29",
+        "title": "綺譚花物語",
+        "author": "楊双子",
+        "publisher": "台灣東販",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2020/2/15",
+        "title": "夫人裙下",
+        "author": "希澄",
+        "publisher": "城邦原創",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2019/4/15",
+        "title": "霜影",
+        "author": "月小伊",
+        "publisher": "集合",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2019/3/16",
+        "title": "我把妳當閨密，妳卻只想上我",
+        "author": "希澄",
+        "publisher": "城邦原創",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2018/10/18",
+        "title": "妳的餘生，我的餘燼",
+        "author": "希澄",
+        "publisher": "城邦原創",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2018/2/5",
+        "title": "月祈：In the starsriver",
+        "author": "月小伊",
+        "publisher": "集合",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    },
+    {
+        "date": "2018/1/15",
+        "title": "粉紅緞帶",
+        "author": "星期一回收日",
+        "publisher": "東立",
+        "status": "已完結",
+        "type": "漫畫",
+        "imageUrl": ""
+    },
+    {
+        "date": "2010/12/16",
+        "title": "P.S. 143,7",
+        "author": "恆思榆",
+        "publisher": "北極之光",
+        "status": "已完結",
+        "type": "小說",
+        "imageUrl": ""
+    }
+]

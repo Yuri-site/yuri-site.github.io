@@ -5,7 +5,6 @@
 * Tailwind CSS
 * Fontawesome
 * Zustand
-* Google Sheets + Apps Script
 
 ## Data type
 ```ts
