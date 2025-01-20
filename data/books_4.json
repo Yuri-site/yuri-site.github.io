@@ -677,19 +677,10 @@
     {
         "date": "2023/1/13",
         "title": "裏台北外送",
-        "author": "",
-        "publisher": "",
-        "status": "",
-        "type": "",
-        "imageUrl": ""
-    },
-    {
-        "date": "",
-        "title": "木几",
-        "author": "尖端",
-        "publisher": "小說",
-        "status": "",
-        "type": "已完結",
+        "author": "木几",
+        "publisher": "尖端",
+        "status": "已完結",
+        "type": "小說",
         "imageUrl": ""
     },
     {
