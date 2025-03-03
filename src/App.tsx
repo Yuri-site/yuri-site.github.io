@@ -1,12 +1,14 @@
 // App.js
+import { Suspense } from 'react';
 import { createHashRouter, RouterProvider } from 'react-router-dom';
 import Home from './pages/Home';
 import WorkList from './pages/WorkList';
 import NotFound from './pages/NotFound';
 import Forum from './pages/Forum';
 import Layout from './pages/Layout';
-import { Suspense } from 'react';
 import Editor from './pages/Editor';
+import DashboardLayout from './pages/dashboard/Layout';
+import BookManagementPage from './pages/dashboard/BookManagement';
 
 const router = createHashRouter([
     {
@@ -47,6 +49,29 @@ const router = createHashRouter([
             },
         ],
         errorElement: <NotFound />,
+    },
+    {
+        path: "/dashboard",
+        element: <DashboardLayout />,
+        children: [
+            {
+                path: "book",
+                element: (
+                    <Suspense fallback={<div>Loading...</div>}>
+                        <BookManagementPage />
+                    </Suspense>
+                ),
+            },
+            {
+                path: "article",
+                element: (
+                    <Suspense fallback={<div>Loading...</div>}>
+                        <BookManagementPage />
+                    </Suspense>
+                ),
+            },
+        ],
+        errorElement: <NotFound />
     },
     {
         path: "*",
