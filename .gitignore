@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+$Recycle.Bin/
+System Volume Information/
+Recovery/
+Documents and Settings/
+Users/Default/
