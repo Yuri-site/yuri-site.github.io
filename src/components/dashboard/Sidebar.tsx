@@ -9,7 +9,7 @@ interface NavItem {
 const navItem: NavItem[] = [
     {
         title: "主頁管理",
-        link: "/dashboard"
+        link: "/dashboard/home"
     },
     {
         title: "文章管理",

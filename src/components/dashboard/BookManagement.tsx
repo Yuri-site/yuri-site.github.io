@@ -1,11 +1,12 @@
-const BookManagement: React.FC = () => {
-  
+import BookList from "./BookManagement/BookList";
 
-  return (
-    <div className="container mx-auto p-6">
-        
-    </div>
-  );
+const BookManagement: React.FC = () => {
+
+    return (
+        <div className="container mx-auto py-6">
+            <BookList />            
+        </div>
+    );
 };
 
 export default BookManagement;

@@ -9,6 +9,7 @@ import Layout from './pages/Layout';
 import Editor from './pages/Editor';
 import DashboardLayout from './pages/dashboard/Layout';
 import BookManagementPage from './pages/dashboard/BookManagement';
+import CarouselManagementPage from './pages/dashboard/CarouselManagement';
 
 const router = createHashRouter([
     {
@@ -63,10 +64,18 @@ const router = createHashRouter([
                 ),
             },
             {
+                path: "home",
+                element: (
+                    <Suspense fallback={<div>Loading...</div>}>
+                        <CarouselManagementPage />
+                    </Suspense>
+                ),
+            },
+            {
                 path: "article",
                 element: (
                     <Suspense fallback={<div>Loading...</div>}>
-                        <BookManagementPage />
+                        <CarouselManagementPage />
                     </Suspense>
                 ),
             },
