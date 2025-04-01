@@ -1,18 +1,18 @@
 import axios from "axios";
 
-// 定義輪播圖片的資料結構
+// define
 export interface CarouselItem {
     title: string;
     articleLink: string;
-    images: string[]; // 可以是圖片連結或上傳的圖片 URL
+    images: string[];
 }
 
-const API_URL = "http://localhost:5000/api/v1/carousel"; // 根據你的後端 API 調整
+const API_URL = "http://localhost:5000/api/v1/carousel";
 
-// 上傳輪播圖片
+// upload Carousel Item
 export const uploadCarouselItem = async (data: CarouselItem): Promise<CarouselItem> => {
     try {
-        const response = await axios.post(API_URL, data);
+        const response = await axios.post<CarouselItem>(API_URL, data);
         return response.data;
     } catch (error) {
         console.error("Error uploading carousel item:", error);
@@ -20,7 +20,8 @@ export const uploadCarouselItem = async (data: CarouselItem): Promise<CarouselIt
     }
 };
 
-// 取得所有輪播圖片
+
+// get all Carousel
 export const fetchCarouselItems = async (): Promise<CarouselItem[]> => {
     try {
         const response = await axios.get<CarouselItem[]>(API_URL);
@@ -31,7 +32,7 @@ export const fetchCarouselItems = async (): Promise<CarouselItem[]> => {
     }
 };
 
-// 刪除輪播圖片
+// delete Carousel
 export const deleteCarouselItem = async (id: string): Promise<void> => {
     try {
         await axios.delete(`${API_URL}/${id}`);

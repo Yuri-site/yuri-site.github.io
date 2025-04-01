@@ -21,15 +21,15 @@ const Header: React.FC<HeaderProps> = ({ logoText, navItems, dropdownTitle, drop
     const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
     const [isDropdownVisible, setIsDropdownVisible] = useState<boolean>(false);
     
-    const dropdownRef = useRef<HTMLDivElement | null>(null); // 用來存儲 dropdown 的參考
-    const dropdownButtonRef = useRef<HTMLButtonElement | null>(null); // 用來存儲 dropdown button 的參考
+    const dropdownRef = useRef<HTMLDivElement | null>(null);
+    const dropdownButtonRef = useRef<HTMLButtonElement | null>(null);
 
-    // Update active navigation state based on pathname
+    // update active navigation state based on pathname
     useEffect(() => {
         setActiveNav(location.pathname);
     }, [location.pathname]);
 
-    // 點擊 dropdown menu 以外的地方隱藏 dropdown
+    // hide dropdown
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
             if (
@@ -40,16 +40,13 @@ const Header: React.FC<HeaderProps> = ({ logoText, navItems, dropdownTitle, drop
             }
         };
 
-        // 當點擊任何地方時觸發
         document.addEventListener("mousedown", handleClickOutside);
-
-        // 清理事件監聽器
         return () => {
             document.removeEventListener("mousedown", handleClickOutside);
         };
     }, []);
 
-    // Toggle dropdown visibility on title click
+    // toggle dropdown visibility on title click
     const handleDropdownToggle = () => {
         setIsDropdownVisible((prevState) => !prevState);
     };
@@ -91,7 +88,7 @@ const Header: React.FC<HeaderProps> = ({ logoText, navItems, dropdownTitle, drop
                         <div className="text-xl font-bold relative" ref={dropdownRef}>
                             <button
                                 onClick={handleDropdownToggle}
-                                ref={dropdownButtonRef} // 綁定到 button 上
+                                ref={dropdownButtonRef}
                                 className={`px-4 py-2 rounded-full transition-colors flex items-center ${
                                     isDropdownVisible
                                         ? "bg-white text-pink-500"

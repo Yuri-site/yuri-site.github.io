@@ -6,18 +6,7 @@ const CarouselManagement: React.FC = () => {
     const [articleLink, setarticleLink] = useState("");
     const [imageLink, setImageLink] = useState("");
     const [images, setImages] = useState<string[]>([]);
-    const [fileNames, setFileNames] = useState<string[]>([]); // Store file paths
-
-    const handleUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const files = event.target.files;
-        if (files) {
-            const newImages = Array.from(files).map(file => URL.createObjectURL(file));
-            const newFileNames = Array.from(files).map(file => file.name);
-            
-            setImages(prev => [...prev, ...newImages]);
-            setFileNames(prev => [...prev, ...newFileNames]);
-        }
-    };
+    const [fileNames, setFileNames] = useState<string[]>([]);
 
     const handleDelete = (index: number) => {
         setImages(images.filter((_, i) => i !== index));
@@ -30,16 +19,10 @@ const CarouselManagement: React.FC = () => {
             return;
         }
 
-        const payload = {
-            title,
-            images: imageLink ? [imageLink] : images, // Use link if provided, otherwise use uploaded images
-            articleLink,
-        };
-
         try {
             await uploadCarouselItem({
                 title,
-                images: imageLink ? [imageLink] : images, // 如果有提供連結，則使用連結，否則使用上傳的圖片
+                images: imageLink ? [imageLink] : images,
                 articleLink,
             });
 

@@ -1,9 +1,9 @@
-import { useBookTabStore } from "../../store/booksTab";  // 引入 zustand store
+import { useBookTabStore } from "../../store/booksTab";
 import tabData from "../../data/workListTabData";
 
 const BooksTabs: React.FC = () => {
-    const currentSeason = useBookTabStore((state) => state.currentSeason);  // 從 store 中取得 currentSeason
-    const setSeason = useBookTabStore((state) => state.setSeason);  // 從 store 中取得 setSeason
+    const currentSeason = useBookTabStore((state) => state.currentSeason);
+    const setSeason = useBookTabStore((state) => state.setSeason);
 
     return (
         <div className="flex mb-4 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -15,7 +15,7 @@ const BooksTabs: React.FC = () => {
                             ? "bg-pink-500 text-white"
                             : "bg-gray-200 text-gray-800"
                     }`}
-                    onClick={() => setSeason(tab)}  // 點擊時設定 season
+                    onClick={() => setSeason(tab)}
                 >
                     {tab}
                 </button>

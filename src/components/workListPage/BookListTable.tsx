@@ -1,8 +1,7 @@
-// src/components/BookListTable.tsx
 import React from "react";
 import { Book } from "../../data/bookListData";
-import { useBookStore } from "../../store/book"; // Import Zustand store
-import BookDetailCard from "./BookDetailCard"; // Import the BookDetail component
+import { useBookStore } from "../../store/book";
+import BookDetailCard from "./BookDetailCard";
 
 interface BookListTableProps {
     filteredBooks: Book[];
@@ -12,7 +11,6 @@ const truncateText = (text: string, maxLength: number): string => {
 };
 
 const BookListTable: React.FC<BookListTableProps> = ({ filteredBooks }) => {
-    // Use Zustand store to manage the selectedBook state
     const { selectedBook, setSelectedBook } = useBookStore();
 
     const handleDetailClick = (book: Book) => {

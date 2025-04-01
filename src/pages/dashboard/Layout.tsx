@@ -4,12 +4,12 @@ import { Outlet } from "react-router-dom";
 const DashboardLayout = () => {
     return (
         <div className="flex h-screen">
-            {/* Sidebar 固定 */}
+            {/* Sidebar fixed */}
             <div className="h-screen w-56 bg-slate-800">
                 <Sidebar />
             </div>
 
-            {/* Outlet 區域可滾動 */}
+            {/* Outlet scrollable */}
             <div className="flex-1 overflow-y-auto">
                 <main className="p-4">
                     <Outlet />

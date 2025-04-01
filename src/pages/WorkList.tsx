@@ -5,14 +5,14 @@ import BookList from "../components/workListPage/BookList";
 
 const WorkList = () => {
     const [viewMode, setViewMode] = useState<"grid" | "list">("list");
-    const [searchQuery, setSearchQuery] = useState(""); // 搜尋框狀態
+    const [searchQuery, setSearchQuery] = useState("");
 
     return (
         <div className="flex flex-col items-center w-screen p-4 mt-12">
-            {/* 選擇標籤 */}
+            {/* select tabs */}
             <BooksTabs />
 
-            {/* Grid/List 切換與搜尋框 */}
+            {/* Grid/List switch */}
             <div className="flex items-center justify-end w-full max-w-4xl mb-4">
                 <input
                     type="text"
@@ -24,7 +24,7 @@ const WorkList = () => {
                 <ViewModeSwitch currentView={viewMode} setViewMode={setViewMode} />
             </div>
 
-            {/* 顯示內容 */}
+            {/* Book list */}
             <BookList viewMode={viewMode} searchQuery={searchQuery} />
         </div>
     );

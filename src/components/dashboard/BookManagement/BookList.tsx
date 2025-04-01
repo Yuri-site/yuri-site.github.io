@@ -17,7 +17,7 @@ const BookList: React.FC = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     
-    // 表單狀態
+    // form status
     const [formData, setFormData] = useState<Book>({
         title: "",
         author: "",
@@ -28,10 +28,10 @@ const BookList: React.FC = () => {
         imageUrl: "",
     });
 
-    // 是否正在編輯
+    // if editing
     const [editingId, setEditingId] = useState<string | null>(null);
 
-    // 取得書籍列表
+    // get book list
     useEffect(() => {
         const loadBooks = async () => {
             try {
@@ -39,6 +39,8 @@ const BookList: React.FC = () => {
                 setBooks(data);
             } catch (err) {
                 setError("無法獲取書籍資料，請稍後再試");
+                console.log(err);
+                
             } finally {
                 setLoading(false);
             }
@@ -46,22 +48,22 @@ const BookList: React.FC = () => {
         loadBooks();
     }, []);
 
-    // 表單變更處理
+    // handle form changes
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
     };
 
-    // 新增或編輯書籍
+    // add or update books
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
             if (editingId) {
-                // 更新書籍
+                // update book
                 await updateBook(editingId, formData);
                 setBooks(books.map(book => (book._id === editingId ? { ...formData, _id: editingId } : book)));
             } else {
-                // 新增書籍
+                // add new book
                 const newBook = await createBook(formData);
                 setBooks([...books, newBook]);
             }
@@ -77,20 +79,24 @@ const BookList: React.FC = () => {
             });
         } catch (err) {
             setError("提交書籍時發生錯誤");
+            console.log(err);
+            
         }
     };
 
-    // 刪除書籍
+    // delete book
     const handleDelete = async (id: string) => {
         try {
             await deleteBook(id);
             setBooks(books.filter(book => book._id !== id));
         } catch (err) {
             setError("刪除失敗，請稍後再試");
+            console.log(err);
+            
         }
     };
 
-    // 編輯書籍
+    // edit book
     const handleEdit = (book: Book) => {
         setEditingId(book._id || null);
         setFormData(book);
@@ -103,7 +109,7 @@ const BookList: React.FC = () => {
         <div className="mx-auto w-[60vw]">
             <h2 className="text-2xl font-bold mb-4 text-center">書籍管理</h2>
 
-            {/* 表單 */}
+            {/* form */}
             <form onSubmit={handleSubmit} className="mb-6 bg-gray-100 p-4 rounded-md shadow-md">
                 <div className="grid grid-cols-2 gap-4">
                     <input type="text" name="title" placeholder="標題" value={formData.title} onChange={handleChange} className="border p-2 rounded-md w-full" required />
@@ -119,7 +125,7 @@ const BookList: React.FC = () => {
                 </button>
             </form>
 
-            {/* 書籍列表 */}
+            {/* Book list */}
             <table className="w-full border-collapse border border-gray-300 shadow-md bg-white">
                 <thead className="bg-gray-200">
                     <tr>

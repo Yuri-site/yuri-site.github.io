@@ -11,7 +11,7 @@ interface NavItem {
 
 interface SidebarProps {
     isOpen: boolean;
-    navItems: NavItem[];  // Change navItems to an array of objects with text and link
+    navItems: NavItem[];
     dropdownTitle: string;
     dropdownItems: string[];
     onClose: () => void;
@@ -102,7 +102,6 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, navItems, dropdownTitle, drop
     );
 };
 
-// PropTypes for runtime validation
 Sidebar.propTypes = {
     isOpen: PropTypes.bool.isRequired,
     navItems: PropTypes.arrayOf(

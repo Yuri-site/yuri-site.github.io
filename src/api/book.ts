@@ -1,7 +1,7 @@
-// src/api/bookApi.ts
+// src/api/book.ts
 import axios from "axios";
 
-// 假设书籍的数据结构
+// define Book structure
  interface Book {
     date: string;
     title: string;
@@ -12,12 +12,12 @@ import axios from "axios";
     imageUrl: string;
 }
 
-const API_URL = "http://localhost:5000/api/v1/books"; // 根据你的后端路由进行调整
+const API_URL = "http://localhost:3000/api/v1/books"; 
 
-// 获取所有书籍
+// get all books
 export const fetchBooks = async (): Promise<Book[]> => {
   try {
-    const response = await axios.get<Book[]>(API_URL); // 在这里声明响应类型为 Book[]
+    const response = await axios.get<Book[]>(API_URL); 
     return response.data;
   } catch (error) {
     console.error("Error fetching books:", error);
@@ -25,10 +25,10 @@ export const fetchBooks = async (): Promise<Book[]> => {
   }
 };
 
-// 创建书籍
+// create book
 export const createBook = async (bookData: Book): Promise<Book> => {
   try {
-    const response = await axios.post(API_URL, bookData);
+    const response = await axios.post<Book>(API_URL, bookData);
     return response.data;
   } catch (error) {
     console.error("Error creating book:", error);
@@ -36,13 +36,13 @@ export const createBook = async (bookData: Book): Promise<Book> => {
   }
 };
 
-// 更新书籍
+// update book
 export const updateBook = async (
   id: string,
   bookData: Book
 ): Promise<Book> => {
   try {
-    const response = await axios.put(`${API_URL}/${id}`, bookData);
+    const response = await axios.put<Book>(`${API_URL}/${id}`, bookData);
     return response.data;
   } catch (error) {
     console.error("Error updating book:", error);
@@ -50,10 +50,10 @@ export const updateBook = async (
   }
 };
 
-// 删除书籍
+// delete book
 export const deleteBook = async (id: string): Promise<void> => {
   try {
-    await axios.delete(`${API_URL}/${id}`);
+    await axios.delete<Book>(`${API_URL}/${id}`);
   } catch (error) {
     console.error("Error deleting book:", error);
     throw error;

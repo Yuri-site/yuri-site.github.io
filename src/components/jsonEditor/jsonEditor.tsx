@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 
 interface JsonObject {
-    [key: string]: string | number | boolean | null; // 定義支援的值類型
+    [key: string]: string | number | boolean | null; // define dataType
 }
 
 const JsonEditor: React.FC = () => {
     const [jsonData, setJsonData] = useState<JsonObject[]>([
         { name: "Alice", age: 25, job: "Developer" },
         { name: "Bob", age: 30, job: "Designer" },
-    ]); // 預設 JSON 資料
+    ]);
     const [jsonOutput, setJsonOutput] = useState<string>("");
 
-    // 新增一列
+    // new row
     const addRow = () => {
         const newRow = Object.keys(jsonData[0] || {}).reduce(
             (acc, key) => ({ ...acc, [key]: "" }),
@@ -20,31 +20,31 @@ const JsonEditor: React.FC = () => {
         setJsonData([...jsonData, newRow]);
     };
 
-    // 刪除一列
+    // delete row
     const deleteRow = (rowIndex: number) => {
         setJsonData(jsonData.filter((_, index) => index !== rowIndex));
     };
 
-    // 更新單元格的值
+    // update value
     const handleValueChange = (rowIndex: number, key: string, value: string) => {
         const updatedData = [...jsonData];
         updatedData[rowIndex] = { ...updatedData[rowIndex], [key]: value };
         setJsonData(updatedData);
     };
 
-    // 新增一個欄位
+    // add col
     const addColumn = () => {
         const newColumnName = prompt("請輸入新的欄位名稱") || "";
         if (newColumnName) {
             const updatedData = jsonData.map((row) => ({
                 ...row,
-                [newColumnName]: "", // 新增的欄位預設為空
+                [newColumnName]: "",
             }));
             setJsonData(updatedData);
         }
     };
 
-    // 生成 JSON 字串
+    // gen json
     const generateJson = () => {
         setJsonOutput(JSON.stringify(jsonData, null, 4));
     };
@@ -53,7 +53,7 @@ const JsonEditor: React.FC = () => {
         <div className="p-4">
             <h1 className="text-lg font-bold mb-4">JSON 檔案編輯器</h1>
 
-            {/* JSON 表格編輯 */}
+            {/* JSON edit */}
             {jsonData.length > 0 && (
                 <table className="table-auto border-collapse border border-gray-300 w-full mb-4">
                     <thead>
@@ -107,7 +107,7 @@ const JsonEditor: React.FC = () => {
                 </table>
             )}
 
-            {/* 動作按鈕 */}
+            {/* action btn */}
             <button
                 className="bg-green-500 text-white px-4 py-2 rounded mr-2"
                 onClick={addRow}
@@ -127,7 +127,7 @@ const JsonEditor: React.FC = () => {
                 生成 JSON
             </button>
 
-            {/* JSON 輸出 */}
+            {/* JSON output */}
             {jsonOutput && (
                 <div className="mt-4">
                     <h2 className="text-lg font-bold mb-2">生成的 JSON</h2>

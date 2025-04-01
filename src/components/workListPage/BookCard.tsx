@@ -3,7 +3,7 @@ import { Book } from "../../data/bookListData";
 const MAX_VISIBLE_TAGS = 2;
 
 interface BookCardProps extends Book {
-    onClick: (book: Book) => void;  // Allow BookCard to accept an onClick prop
+    onClick: (book: Book) => void;
 }
 
 const BookCard: React.FC<BookCardProps> = ({ title, date, author, type, publisher, status, imageUrl, onClick }) => {

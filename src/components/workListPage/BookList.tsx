@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { useBookTabStore } from "../../store/booksTab";  // 引入 zustand store
-import BookCardList from "./BookCardList"; // 假設這是已經存在的組件
-import BookListTable from "./BookListTable"; // 引入新組件
+import { useBookTabStore } from "../../store/booksTab";
+import BookCardList from "./BookCardList";
+import BookListTable from "./BookListTable";
 import { Book } from "../../data/bookListData";
 
 interface Tab {
@@ -16,12 +16,12 @@ interface BookListProps {
 }
 
 const BookList: React.FC<BookListProps> = ({ viewMode, searchQuery }) => {
-    const currentSeason = useBookTabStore((state) => state.currentSeason); // 從 zustand store 中取得 currentSeason
+    const currentSeason = useBookTabStore((state) => state.currentSeason);
     const [books, setBooks] = useState<Book[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
-    const [tabData, setTabData] = useState<Tab[]>([]); // 用來存儲 fetch 下來的 tabData
+    const [tabData, setTabData] = useState<Tab[]>([]);
 
-    // 先 fetch tabData
+    // fetch tabData
     useEffect(() => {
         fetch("https://yuri-site.github.io/data/booksTab.json")
             .then((response) => {
@@ -31,21 +31,21 @@ const BookList: React.FC<BookListProps> = ({ viewMode, searchQuery }) => {
                 return response.json();
             })
             .then((data) => {
-                setTabData(data);  // 設置 tabData
+                setTabData(data);
             })
             .catch((error) => console.error("Error fetching tab data:", error));
     }, []);
 
-    // 根據 currentSeason 決定要 fetch 哪個 data_link
+    // decide which data_link to fetch depends on currentSeason
     const selectedTab = tabData.find((tab) => tab.title === currentSeason);
-    const dataLink = selectedTab ? selectedTab.data_link : ""; // 選擇對應的 data_link
+    const dataLink = selectedTab ? selectedTab.data_link : "";
 
-    // 根據 dataLink 來獲取書籍資料
+    // get book data depends on dataLink
     useEffect(() => {
         if (!dataLink) return;
 
-        // 進行資料 fetch
-        setLoading(true); // 在 fetch 開始時顯示 loading
+        // fetch data
+        setLoading(true);
         fetch(dataLink)
             .then((response) => {
                 if (!response.ok) {
@@ -54,16 +54,16 @@ const BookList: React.FC<BookListProps> = ({ viewMode, searchQuery }) => {
                 return response.json();
             })
             .then((data) => {
-                setBooks(data); // 設置書籍資料
-                setLoading(false); // 完成後關閉 loading
+                setBooks(data);
+                setLoading(false);
             })
             .catch((error) => {
                 console.error("Error fetching books data:", error);
                 setLoading(false);
             });
-    }, [dataLink]); // 當 dataLink 改變時重新 fetch 資料
+    }, [dataLink]);
 
-    // 根據搜尋文字過濾書籍資料
+    //  filterBooks by text
     const filteredBooks = books.filter((book) =>
         Object.values(book).some((value) =>
             value.toLowerCase().includes(searchQuery.toLowerCase())
@@ -74,7 +74,7 @@ const BookList: React.FC<BookListProps> = ({ viewMode, searchQuery }) => {
         return <div>Loading...</div>;
     }
 
-    // 顯示 Grid 或 List 視圖
+    // Grid or List
     if (viewMode === "grid") {
         return <BookCardList filteredBooks={filteredBooks} />;
     }

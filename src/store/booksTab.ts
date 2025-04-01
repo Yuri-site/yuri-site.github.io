@@ -6,9 +6,9 @@ interface BookTab {
 }
 
 export const useBookTabStore = create<BookTab>((set) => ({
-    currentSeason: localStorage.getItem("currentSeason") || "本季更新", // 從 localStorage 初始化狀態
+    currentSeason: localStorage.getItem("currentSeason") || "本季更新",
     setSeason: (season) => {
-        localStorage.setItem("currentSeason", season); // 存到 localStorage
+        localStorage.setItem("currentSeason", season);
         set({ currentSeason: season });
     },
 }));
