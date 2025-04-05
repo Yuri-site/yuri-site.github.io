@@ -9,6 +9,7 @@ import Layout from './pages/Layout';
 import Editor from './pages/Editor';
 import DashboardLayout from './pages/dashboard/Layout';
 import BookManagementPage from './pages/dashboard/BookManagement';
+import BookTabManagementPage from './pages/dashboard/BookTabManagement';
 import CarouselManagementPage from './pages/dashboard/CarouselManagement';
 
 const router = createHashRouter([
@@ -76,6 +77,14 @@ const router = createHashRouter([
                 element: (
                     <Suspense fallback={<div>Loading...</div>}>
                         <CarouselManagementPage />
+                    </Suspense>
+                ),
+            },
+            {
+                path: "bookTab",
+                element: (
+                    <Suspense fallback={<div>Loading...</div>}>
+                        <BookTabManagementPage />
                     </Suspense>
                 ),
             },

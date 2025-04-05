@@ -1,4 +1,5 @@
-import { Book } from "../../data/bookListData";
+import { Book } from "../../types";
+
 
 const MAX_VISIBLE_TAGS = 2;
 

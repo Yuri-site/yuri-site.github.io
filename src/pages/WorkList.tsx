@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import BooksTabs from "../components/workListPage/BooksTabs";
 import ViewModeSwitch from "../components/workListPage/ViewModeSwitch";
 import BookList from "../components/workListPage/BookList";
@@ -6,6 +6,17 @@ import BookList from "../components/workListPage/BookList";
 const WorkList = () => {
     const [viewMode, setViewMode] = useState<"grid" | "list">("list");
     const [searchQuery, setSearchQuery] = useState("");
+    const [debouncedSearchQuery, setDebouncedSearchQuery] = useState(searchQuery);
+
+    // Debounce search input to avoid unnecessary API calls or re-renders
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setDebouncedSearchQuery(searchQuery);
+        }, 500); // Delay 500ms after the user stops typing
+
+        // Cleanup timer if the component unmounts or if searchQuery changes
+        return () => clearTimeout(timer);
+    }, [searchQuery]);
 
     return (
         <div className="flex flex-col items-center w-screen p-4 mt-12">
@@ -25,7 +36,7 @@ const WorkList = () => {
             </div>
 
             {/* Book list */}
-            <BookList viewMode={viewMode} searchQuery={searchQuery} />
+            <BookList viewMode={viewMode} searchQuery={debouncedSearchQuery} />
         </div>
     );
 };

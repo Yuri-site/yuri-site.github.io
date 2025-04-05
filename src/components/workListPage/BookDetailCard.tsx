@@ -1,12 +1,12 @@
-import React from "react";
-import { Book } from "../../data/bookListData";
+import { Book } from "../../types";
 
 interface BookDetailProps {
     selectedBook: Book | null;
     closeDetailModal: () => void;
+    colTabs: { key: keyof Book; label: string }[]; // 添加 colTabs 屬性
 }
 
-const BookDetailCard: React.FC<BookDetailProps> = ({ selectedBook, closeDetailModal }) => {
+const BookDetailCard: React.FC<BookDetailProps> = ({ selectedBook, closeDetailModal, colTabs }) => {
     if (!selectedBook) return null;
 
     return (
@@ -19,12 +19,12 @@ const BookDetailCard: React.FC<BookDetailProps> = ({ selectedBook, closeDetailMo
                 onClick={(e) => e.stopPropagation()}
             >
                 <h3 className="text-xl font-bold mb-4">書籍詳細資訊</h3>
-                <p><strong>書名:</strong> {selectedBook.title}</p>
-                <p><strong>日期:</strong> {selectedBook.date}</p>
-                <p><strong>作者:</strong> {selectedBook.author}</p>
-                <p><strong>類型:</strong> {selectedBook.type}</p>
-                <p><strong>出版社:</strong> {selectedBook.publisher}</p>
-                <p><strong>狀態:</strong> {selectedBook.status}</p>
+                {/* 根據 colTabs 動態顯示 */}
+                {colTabs.map((col, index) => (
+                    <p key={index}>
+                        <strong>{col.label}:</strong> {selectedBook[col.key] || "-"}
+                    </p>
+                ))}
                 <button
                     onClick={closeDetailModal}
                     className="mt-4 bg-red-500 text-white px-4 py-2 rounded"

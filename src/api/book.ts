@@ -1,4 +1,3 @@
-// src/api/book.ts
 import axios from "axios";
 
 // define Book structure
@@ -9,7 +8,7 @@ import axios from "axios";
     type: string;
     publisher: string;
     status: string;
-    imageUrl: string;
+    tabs?: string[];
 }
 
 const API_URL = "http://localhost:3000/api/v1/books"; 
@@ -21,6 +20,17 @@ export const fetchBooks = async (): Promise<Book[]> => {
     return response.data;
   } catch (error) {
     console.error("Error fetching books:", error);
+    throw error;
+  }
+};
+
+// get books by tab
+export const fetchBooksByTab = async (tab: string): Promise<Book[]> => {
+  try {
+    const response = await axios.get<Book[]>(`${API_URL}/tab/${tab}`);
+    return response.data;
+  } catch (error) {
+    console.error(`Error fetching books for tab "${tab}":`, error);
     throw error;
   }
 };

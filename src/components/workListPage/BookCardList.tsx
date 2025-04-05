@@ -1,5 +1,5 @@
 import React from "react";
-import { Book } from "../../data/bookListData";
+import { Book } from "../../types";
 import { useBookStore } from "../../store/book"; // Zustand store
 import BookCard from "./BookCard"; // BookCard component
 import BookDetailCard from "./BookDetailCard"; // BookDetail component to show modal
