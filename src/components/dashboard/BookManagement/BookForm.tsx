@@ -63,6 +63,13 @@ const BookForm: React.FC<BookFormProps> = ({
           className="border p-2 rounded-md"
         />
         <input
+          name="comment"
+          value={formData.comment}
+          onChange={handleChange}
+          placeholder="備註"
+          className="border p-2 rounded-md"
+        />
+        <input
           type="date"
           name="date"
           value={formData.date}

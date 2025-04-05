@@ -6,6 +6,7 @@ export interface Book {
     type: string;
     publisher: string;
     status: string;
+    comment: string;
     imageUrl?: string;
     tabs?: string[];
 }

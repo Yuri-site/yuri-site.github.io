@@ -15,6 +15,7 @@ const bookKeys = [
     "type",
     "publisher",
     "status",
+    "comment",
     "imageUrl",
 ] as const;
 
