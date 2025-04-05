@@ -49,11 +49,9 @@ const BookList: React.FC<BookListProps> = ({ viewMode, searchQuery }) => {
         fetchBooksByTab(selectedTab._id)
             .then((data) => {
                 // Filter books based on the selectedTab's col_tabs
-                const filteredBooks = data.filter((book: Book) =>
-                    selectedTab.col_tabs.some((col) => book[col.key])
-                );
-                setBooks(filteredBooks);
+                setBooks(data);
                 setLoading(false);
+                
             })
             .catch((error) => {
                 console.error("Error fetching books data:", error);
