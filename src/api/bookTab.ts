@@ -1,33 +1,33 @@
 import axios from "axios";
+import {BookTab} from "../types/index"
 
-export interface Book {
-    _id?: string;
-    date: string;
-    title: string;
-    author: string;
-    type: string;
-    publisher: string;
-    status: string;
-    imageUrl?: string;
-    tabs?: string[];
-}
+const API_URL = "https://yuri-site-backend.onrender.com/api/v1/booktab";
 
-// define BookTab structure
-export interface BookTab {
-    _id?: string;
-    title: string;
-    col_tabs: {
-        key: keyof Book;
-        label: string;
-    }[];
-}
+axios.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem("authToken"); // Retrieve token from localStorage
+    if (token) {
+      // Safely access config.headers with optional chaining
+      config.headers = config.headers || {};  // Ensure headers exist
+      config.headers["Authorization"] = `Bearer ${token}`; // Add Authorization header
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
 
-const API_URL = "http://localhost:3000/api/v1/booktab";
 
 // get all book tabs
 export const fetchBookTabs = async (): Promise<BookTab[]> => {
+    const token = localStorage.getItem('authToken'); // 取得 JWT token
     try {
-        const response = await axios.get<BookTab[]>(API_URL);
+        const response = await axios.get<BookTab[]>(API_URL, {
+      headers: {
+        'Authorization': `Bearer ${token}` // 設定 Authorization 標頭
+      }
+    });
         return response.data;
     } catch (error) {
         console.error("Error fetching book tabs:", error);

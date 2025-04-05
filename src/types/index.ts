@@ -18,3 +18,6 @@ export interface BookTab {
         label: string;
     }[];
 }
+export interface LoginResponse {
+  token: string; // Assuming the response contains a JWT token
+}

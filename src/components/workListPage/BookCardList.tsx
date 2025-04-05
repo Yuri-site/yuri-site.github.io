@@ -6,9 +6,10 @@ import BookDetailCard from "./BookDetailCard"; // BookDetail component to show m
 
 interface BookCardListProps {
     filteredBooks: Book[];
+    colTabs: { key: keyof Book; label: string }[];  // Update this line to use key for filtering
 }
 
-const BookCardList: React.FC<BookCardListProps> = ({ filteredBooks }) => {
+const BookCardList: React.FC<BookCardListProps> = ({ filteredBooks, colTabs }) => {
     const { selectedBook, setSelectedBook } = useBookStore(); // Zustand state for selected book
 
     const handleCardClick = (book: Book) => {
@@ -32,7 +33,7 @@ const BookCardList: React.FC<BookCardListProps> = ({ filteredBooks }) => {
             </div>
 
             {/* Show the detail modal if a book is selected */}
-            {selectedBook && <BookDetailCard selectedBook={selectedBook} closeDetailModal={closeDetailModal} />}
+            {selectedBook && <BookDetailCard selectedBook={selectedBook} closeDetailModal={closeDetailModal} colTabs={colTabs}/>}
         </div>
     );
 };

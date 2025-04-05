@@ -27,6 +27,8 @@ const BookList: React.FC<BookListProps> = ({ viewMode, searchQuery }) => {
             } catch (err) {
                 setError("載入分類失敗");
                 console.error(err);
+                console.log(error);
+                
             } finally {
                 setLoading(false);
             }
@@ -81,7 +83,7 @@ const BookList: React.FC<BookListProps> = ({ viewMode, searchQuery }) => {
 
     // Grid or List view
     if (viewMode === "grid") {
-        return <BookCardList filteredBooks={filteredBooks} />;
+        return <BookCardList filteredBooks={filteredBooks} colTabs={selectedTab?.col_tabs || []} />;
     }
 
     return <BookListTable filteredBooks={filteredBooks} colTabs={selectedTab?.col_tabs || []} />;

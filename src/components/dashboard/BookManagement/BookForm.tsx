@@ -83,6 +83,7 @@ const BookForm: React.FC<BookFormProps> = ({
         <label className="font-semibold mb-1 block">所屬分類：</label>
         <div className="flex flex-wrap gap-2 mt-2">
           {tabs.map((tab) => {
+            if (!tab._id) return null;
             const isSelected = formData.tabs?.includes(tab._id) || false;
             const colorClass = getTabColorClass(tab, tabs);
             
@@ -97,7 +98,7 @@ const BookForm: React.FC<BookFormProps> = ({
                 <input
                   type="checkbox"
                   checked={isSelected}
-                  onChange={() => handleTabChange(tab._id)}
+                  onChange={() => handleTabChange(tab._id!)}
                   className="mr-2"
                 />
                 {tab.title}
