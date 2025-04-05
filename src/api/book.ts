@@ -1,5 +1,5 @@
 import axios from "axios";
-import {Book} from "../types/index"
+import { Book } from "../types/index";
 
 const API_URL = "https://yuri-site-backend.onrender.com/api/v1/books";
 
@@ -8,7 +8,6 @@ axios.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("authToken"); // Retrieve token from localStorage
     if (token) {
-      // Safely access config.headers with optional chaining
       config.headers = config.headers || {};  // Ensure headers exist
       config.headers["Authorization"] = `Bearer ${token}`; // Add Authorization header
     }
@@ -19,16 +18,10 @@ axios.interceptors.request.use(
   }
 );
 
-
 // get all books
 export const fetchBooks = async (): Promise<Book[]> => {
-  const token = localStorage.getItem('authToken'); // 取得 JWT token
   try {
-    const response = await axios.get<Book[]>(API_URL, {
-      headers: {
-        'Authorization': `Bearer ${token}` // 設定 Authorization 標頭
-      }
-    });
+    const response = await axios.get<Book[]>(API_URL);
     return response.data;
   } catch (error) {
     console.error("Error fetching books:", error);

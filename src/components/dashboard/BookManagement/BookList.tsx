@@ -18,6 +18,7 @@ const allAttributes = [
   "type",
   "publisher",
   "status",
+  "comment",
   "imageUrl",
   "tabs",
 ];
@@ -29,6 +30,7 @@ const attrDisplayNames: Record<string, string> = {
   type: "類型",
   publisher: "出版社",
   status: "狀態",
+  comment: "備註",
   imageUrl: "圖片",
   tabs: "所屬標籤",
 };
@@ -43,7 +45,6 @@ const BookList: React.FC = () => {
     "type",
     "publisher",
     "status",
-    "comment",
   ]);
   const [formData, setFormData] = useState<Book>({
     title: "",
