@@ -7,7 +7,7 @@ interface BookCardProps extends Book {
     onClick: (book: Book) => void;
 }
 
-const BookCard: React.FC<BookCardProps> = ({ title, date, author, type, publisher, status, imageUrl, onClick }) => {
+const BookCard: React.FC<BookCardProps> = ({ title, date, author, type, publisher, status, comment, imageUrl, onClick }) => {
     const tags = [type, publisher, status];
     const visibleTags = tags.slice(0, MAX_VISIBLE_TAGS);
     const hiddenTagCount = tags.length - MAX_VISIBLE_TAGS;
@@ -18,7 +18,7 @@ const BookCard: React.FC<BookCardProps> = ({ title, date, author, type, publishe
         >
             {/* Image Section */}
             <div className="w-full h-64 bg-gray-200 flex items-center justify-center cursor-pointer"
-                onClick={() => onClick({ title, date,  author, type, publisher, status, imageUrl })}
+                onClick={() => onClick({ title, date,  author, type, publisher, status, comment, imageUrl })}
             >
                 {imageUrl ? (
                     <img
@@ -34,7 +34,7 @@ const BookCard: React.FC<BookCardProps> = ({ title, date, author, type, publishe
             {/* Content Section */}
             <div className="border-t-2 border-gray-500 p-4 max-h-40">
                 <h3 className="line-clamp-2 overflow-hidden text-ellipsis text-lg font-bold text-gray-800 cursor-pointer"
-                    onClick={() => onClick({ title, date,  author, type, publisher, status, imageUrl })}
+                    onClick={() => onClick({ title, date,  author, type, publisher, status, comment, imageUrl })}
                 >
                     {title}
                 </h3>

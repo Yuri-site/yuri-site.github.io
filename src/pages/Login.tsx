@@ -12,7 +12,7 @@ const LoginPage: React.FC = () => {
   const handleLogin = async (): Promise<void> => {
     try {
       // 發送 POST 請求到後端
-      const response = await axios.post<LoginResponse>('http://localhost:3000/login', { username, password });
+      const response = await axios.post<LoginResponse>('https://yuri-site-backend.onrender.com/login', { username, password });
       // 儲存 Token 至 localStorage
       localStorage.setItem('authToken', response.data.token);
       // 跳轉至 dashboard

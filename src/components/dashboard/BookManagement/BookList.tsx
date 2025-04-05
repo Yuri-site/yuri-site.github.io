@@ -43,6 +43,7 @@ const BookList: React.FC = () => {
     "type",
     "publisher",
     "status",
+    "comment",
   ]);
   const [formData, setFormData] = useState<Book>({
     title: "",
@@ -50,6 +51,7 @@ const BookList: React.FC = () => {
     type: "",
     publisher: "",
     status: "",
+    comment: "",
     date: new Date().toISOString().split("T")[0],
     imageUrl: "",
     tabs: [],
@@ -113,6 +115,7 @@ const BookList: React.FC = () => {
         type: "",
         publisher: "",
         status: "",
+        comment: "",
         date: new Date().toISOString().split("T")[0],
         imageUrl: "",
         tabs: [],
