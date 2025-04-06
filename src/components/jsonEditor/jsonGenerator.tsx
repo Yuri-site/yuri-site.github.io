@@ -6,8 +6,8 @@ interface FormData {
     author: string;
     publisher: string;
     status: string;
-    type: string;
-    imageUrl: string;
+    comment: string;
+    // imageUrl: string;
 }
 
 const JsonGenerator: React.FC = () => {
@@ -21,15 +21,16 @@ const JsonGenerator: React.FC = () => {
     const handleGenerate = () => {
         const lines = bulkInput.split("\n");
         const parsedData: FormData[] = lines.map((line) => {
-            const [date, title, author, publisher, type, status] = line.split("\t");
+            const [date, title, author, publisher, comment, status] = line.split("\t");
             return {
                 date: date || "",
                 title: title || "",
                 author: author || "",
                 publisher: publisher || "",
                 status: status || "",
-                type: type || "",
-                imageUrl: ""
+                comment: comment || "",
+                // imageUrl: "",
+                tabs:["67f28fd24d6f56902495d470"]
             };
         });
         setJsonOutput(parsedData);

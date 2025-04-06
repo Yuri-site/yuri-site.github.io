@@ -40,21 +40,31 @@ const BookList: React.FC<BookListProps> = ({ viewMode, searchQuery }) => {
     const selectedTab = tabData.find((tab) => tab.title === currentSeason);
 
     // Fetch books based on selected tab
+    // Fetch books based on selected tab
     useEffect(() => {
+        // Clear books when tab changes - this is important!
+        setBooks([]);
+        
         if (!selectedTab || !selectedTab._id) return; // Check if _id is defined
 
         setLoading(true);
-
         // Fetch books using the selected tab's _id
         fetchBooksByTab(selectedTab._id)
             .then((data) => {
                 // Filter books based on the selectedTab's col_tabs
-                setBooks(data);
-                setLoading(false);
-                
+                const filteredBooks = data.filter((book: Book) =>
+                    selectedTab.col_tabs.some((col) => book[col.key])
+                );
+                setBooks(filteredBooks);
             })
             .catch((error) => {
                 console.error("Error fetching books data:", error);
+                // Clear books on error so old data doesn't remain
+                setBooks([]);
+                // Set an error message if needed
+                setError(`無法獲取 ${selectedTab.title} 分類的書籍`);
+            })
+            .finally(() => {
                 setLoading(false);
             });
     }, [selectedTab]);

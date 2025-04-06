@@ -42,6 +42,7 @@ const BookListTable: React.FC<BookListTableProps> = ({ filteredBooks, colTabs })
                 return "-";
         }
     };
+    
 
     return (
         <div className="mt-2">

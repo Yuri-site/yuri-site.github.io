@@ -1,5 +1,5 @@
 export const headerData = {
-    logoText: "百合作品整理",
+    logoText: "百合坂",
     navItems: [
         { text: "最新消息", link: "/" },
         { text: "作品列表", link: "/worklist" },
