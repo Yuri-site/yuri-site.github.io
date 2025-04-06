@@ -223,7 +223,7 @@ const BookTabManagement: React.FC = () => {
                                               .join("、")
                                         : "—"}
                                 </td>
-                                <td className="border p-2 text-center space-x-2">
+                                <td className="flex border p-2 text-center space-x-2">
                                     <button
                                         onClick={() => handleEdit(tab)}
                                         className="bg-yellow-500 text-white px-2 py-1 rounded"

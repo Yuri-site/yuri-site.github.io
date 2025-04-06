@@ -35,7 +35,7 @@ const BooksTabs: React.FC = () => {
                 tabData.map((tab) => (
                     <button
                         key={tab}
-                        className={`sm:h-12 h-20 line-clamp-2 overflow-hidden text-ellipsis w-full sm:w-48 h-12 px-4 py-2 rounded-lg ${
+                        className={`sm:h-16 h-20 line-clamp-2 overflow-hidden text-ellipsis w-full sm:w-48 h-12 px-4 py-2 rounded-lg ${
                             currentSeason === tab
                                 ? "bg-pink-500 text-white"
                                 : "bg-gray-200 text-gray-800"

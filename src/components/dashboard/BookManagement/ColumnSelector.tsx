@@ -33,7 +33,7 @@ const ColumnSelector: React.FC<ColumnSelectorProps> = ({
 
   return (
     <div className="mb-6">
-      <h3 className="font-bold mb-2">顯示欄位（最多6個）：</h3>
+      <h3 className="font-bold mb-2">顯示欄位：</h3>
       <div className="flex flex-wrap gap-2">
         {allAttributes.map((attr) => (
           <button

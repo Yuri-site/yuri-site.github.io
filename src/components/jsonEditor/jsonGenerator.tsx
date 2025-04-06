@@ -4,6 +4,7 @@ interface FormData {
     date: string;
     title: string;
     author: string;
+    // type: string;
     publisher: string;
     status: string;
     comment: string;
@@ -21,11 +22,12 @@ const JsonGenerator: React.FC = () => {
     const handleGenerate = () => {
         const lines = bulkInput.split("\n");
         const parsedData: FormData[] = lines.map((line) => {
-            const [date, title, author, publisher, comment, status] = line.split("\t");
+            const [date, title, author, publisher, status, comment] = line.split("\t");
             return {
                 date: date || "",
                 title: title || "",
                 author: author || "",
+                // type: type || "",
                 publisher: publisher || "",
                 status: status || "",
                 comment: comment || "",

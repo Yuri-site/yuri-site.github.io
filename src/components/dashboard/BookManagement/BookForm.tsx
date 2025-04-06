@@ -19,6 +19,11 @@ const BookForm: React.FC<BookFormProps> = ({
   handleTabChange,
   handleSubmit,
 }) => {
+    const formatDateForInput = (dateStr: string): string => {
+        const date = new Date(dateStr);
+        if (isNaN(date.getTime())) return ""; // 無效日期，回傳空字串避免錯誤
+        return date.toISOString().split("T")[0]; // 回傳 YYYY-MM-DD
+    };
   return (
     <form
       onSubmit={handleSubmit}
@@ -72,7 +77,7 @@ const BookForm: React.FC<BookFormProps> = ({
         <input
           type="date"
           name="date"
-          value={formData.date}
+          value={formatDateForInput(formData.date)}
           onChange={handleChange}
           className="border p-2 rounded-md"
         />

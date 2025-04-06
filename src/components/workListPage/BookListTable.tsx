@@ -1,19 +1,42 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Book } from "../../types";
 import { useBookStore } from "../../store/book";
 import BookDetailCard from "./BookDetailCard";
+import ColumnSelector from "../dashboard/BookManagement/ColumnSelector";
 
 interface BookListTableProps {
     filteredBooks: Book[];
-    colTabs: { key: keyof Book; label: string }[];  // Update this line to use key for filtering
+    colTabs: { key: keyof Book; label: string }[];
 }
 
 const truncateText = (text: string, maxLength: number): string => {
+    if (!text || typeof text !== "string") return "";
     return text.length > maxLength ? `${text.slice(0, maxLength)}...` : text;
 };
 
 const BookListTable: React.FC<BookListTableProps> = ({ filteredBooks, colTabs }) => {
     const { selectedBook, setSelectedBook } = useBookStore();
+    // Create state for selected columns
+    const [selectedCols, setSelectedCols] = useState<string[]>([]);
+
+    // On initial load, set default columns (up to 6 from colTabs)
+    useEffect(() => {
+        if (colTabs.length > 0) {
+            // Get keys from colTabs, limit to 6
+            const initialCols = colTabs.slice(0, 6).map(tab => tab.key as string);
+            setSelectedCols(initialCols);
+        }
+    }, [colTabs]);
+
+    // Create a mapping for column display names
+    const attrDisplayNames: Record<string, string> = {};
+    colTabs.forEach(tab => {
+        attrDisplayNames[tab.key as string] = tab.label;
+    });
+
+    const handleColSelect = (cols: string[]) => {
+        setSelectedCols(cols);
+    };
 
     const handleDetailClick = (book: Book) => {
         setSelectedBook(book);
@@ -23,7 +46,10 @@ const BookListTable: React.FC<BookListTableProps> = ({ filteredBooks, colTabs })
         setSelectedBook(null);
     };
 
-    // 動態渲染表格的頭部和內容
+    // Get all available column keys for the selector
+    const allAttributes = colTabs.map(tab => tab.key as string);
+
+    // Dynamic column rendering
     const renderColumn = (columnKey: keyof Book, book: Book) => {
         switch (columnKey) {
             case "date":
@@ -35,21 +61,33 @@ const BookListTable: React.FC<BookListTableProps> = ({ filteredBooks, colTabs })
             case "type":
                 return book.type;
             case "publisher":
-                return book.publisher;
+                return truncateText(book.publisher, 8);
             case "status":
                 return book.status;
+            case "comment":
+                return book.comment;
             default:
                 return "-";
         }
     };
-    
+
+    // Filter colTabs based on selectedCols
+    const selectedColTabs = colTabs.filter(col => selectedCols.includes(col.key as string));
 
     return (
         <div className="mt-2">
+            {/* Add the Column Selector component */}
+            <ColumnSelector
+                selectedCols={selectedCols}
+                allAttributes={allAttributes}
+                attrDisplayNames={attrDisplayNames}
+                handleColSelect={handleColSelect}
+            />
+
             <table className="line-clamp-2 overflow-hidden text-ellipsis max-w-[100vw] border-collapse border border-gray-300">
                 <thead>
                     <tr className="bg-pink-100">
-                        {colTabs.map((col, index) => (
+                        {selectedColTabs.map((col, index) => (
                             <th key={index} className="border border-gray-300 px-4 py-2">
                                 {col.label}
                             </th>
@@ -61,9 +99,9 @@ const BookListTable: React.FC<BookListTableProps> = ({ filteredBooks, colTabs })
                     {filteredBooks.length > 0 ? (
                         filteredBooks.map((book, index) => (
                             <tr key={index}>
-                                {colTabs.map((col, colIndex) => (
+                                {selectedColTabs.map((col, colIndex) => (
                                     <td key={colIndex} className="border border-gray-300 px-4 py-2">
-                                        {renderColumn(col.key, book)} {/* 使用 col.key 動態渲染每一列 */}
+                                        {renderColumn(col.key, book)}
                                     </td>
                                 ))}
                                 <td className="border border-gray-300 px-4 py-2">
@@ -80,7 +118,7 @@ const BookListTable: React.FC<BookListTableProps> = ({ filteredBooks, colTabs })
                         <tr>
                             <td
                                 className="border border-gray-300 px-4 py-2 text-center"
-                                colSpan={colTabs.length + 1}
+                                colSpan={selectedColTabs.length + 1}
                             >
                                 找不到符合條件的書籍
                             </td>
