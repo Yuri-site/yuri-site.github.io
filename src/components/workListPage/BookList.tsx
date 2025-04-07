@@ -34,6 +34,7 @@ const BookList: React.FC<BookListProps> = ({ viewMode, searchQuery }) => {
             }
         };
         loadTabs();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     // Get the selected tab based on currentSeason

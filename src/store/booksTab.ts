@@ -6,7 +6,7 @@ interface BookTab {
 }
 
 export const useBookTabStore = create<BookTab>((set) => ({
-    currentSeason: localStorage.getItem("currentSeason") || "本季更新",
+    currentSeason: localStorage.getItem("currentSeason") || "中文正版代理百合漫畫",
     setSeason: (season) => {
         localStorage.setItem("currentSeason", season);
         set({ currentSeason: season });

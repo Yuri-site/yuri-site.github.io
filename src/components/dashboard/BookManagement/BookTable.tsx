@@ -114,7 +114,7 @@ const BookTable: React.FC<BookTableProps> = ({
                       return tab ? (
                         <span 
                           key={tabId} 
-                          className={`px-2 py-0.5 rounded-full text-xs font-medium ${getTabColorClass(tab, tabs)}`}
+                          className={`px-2 py-0.5 rounded-lg text-xs font-medium ${getTabColorClass(tab, tabs)}`}
                         >
                           {tab.title}
                         </span>
@@ -135,20 +135,23 @@ const BookTable: React.FC<BookTableProps> = ({
                 )}
               </td>
             ))}
-            <td className="flex border p-2 space-x-2 text-center">
-              <button
-                onClick={() => handleEdit(book)}
-                className="px-2 py-1 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 transition-colors"
-              >
-                編輯
-              </button>
-              <button
-                onClick={() => book._id && handleDelete(book._id)}
-                className="px-2 py-1 bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors"
-              >
-                刪除
-              </button>
+            <td className="border p-2 text-center align-middle">
+                <div className="flex justify-center space-x-2">
+                    <button
+                        onClick={() => handleEdit(book)}
+                        className="px-2 py-1 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 transition-colors"
+                    >
+                        編輯
+                    </button>
+                    <button
+                        onClick={() => book._id && handleDelete(book._id)}
+                        className="px-2 py-1 bg-red-500 text-white rounded-md hover:bg-red-600 transition-colors"
+                    >
+                        刪除
+                    </button>
+                </div>
             </td>
+
           </tr>
         ))}
         {sortedBooks.length === 0 && (
