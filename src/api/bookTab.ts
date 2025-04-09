@@ -1,7 +1,7 @@
 import axios from "axios";
 import { BookTab } from "../types/index";
 
-const API_URL = "https://yuri-site-backend.onrender.com/api/v1/booktab";
+const API_URL = `${import.meta.env.VITE_API_URL as string}/bookTab`;
 
 // Set Axios interceptor to add the Authorization header
 axios.interceptors.request.use(

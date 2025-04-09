@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { Book } from "../../types";
 import { useBookStore } from "../../store/book";
 import BookDetailCard from "./BookDetailCard";
@@ -16,19 +16,20 @@ const truncateText = (text: string, maxLength: number): string => {
 
 const BookListTable: React.FC<BookListTableProps> = ({ filteredBooks, colTabs }) => {
     const { selectedBook, setSelectedBook } = useBookStore();
-    // Create state for selected columns
     const [selectedCols, setSelectedCols] = useState<string[]>([]);
+    const [sortKey, setSortKey] = useState<keyof Book | null>("date");
+    const [sortOrder, setSortOrder] = useState<"asc" | "desc" | null>("desc");
 
-    // On initial load, set default columns (up to 6 from colTabs)
+    // 初始化顯示欄位：手機顯示 3 個欄，桌機 5 個
     useEffect(() => {
         if (colTabs.length > 0) {
-            // Get keys from colTabs, limit to 6
-            const initialCols = colTabs.slice(0, 6).map(tab => tab.key as string);
+            const isMobile = window.innerWidth < 768;
+            const initialCount = isMobile ? 3 : 5;
+            const initialCols = colTabs.slice(0, initialCount).map(tab => tab.key as string);
             setSelectedCols(initialCols);
         }
     }, [colTabs]);
 
-    // Create a mapping for column display names
     const attrDisplayNames: Record<string, string> = {};
     colTabs.forEach(tab => {
         attrDisplayNames[tab.key as string] = tab.label;
@@ -46,14 +47,47 @@ const BookListTable: React.FC<BookListTableProps> = ({ filteredBooks, colTabs })
         setSelectedBook(null);
     };
 
-    // Get all available column keys for the selector
     const allAttributes = colTabs.map(tab => tab.key as string);
 
-    // Dynamic column rendering
+    const handleSort = (key: keyof Book) => {
+        if (sortKey === key) {
+            // 在同一欄位間切換 asc <-> desc
+            setSortOrder((prev) => (prev === "asc" ? "desc" : "asc"));
+        } else {
+            setSortKey(key);
+            setSortOrder("asc");
+        }
+    };
+
+    const sortedBooks = useMemo(() => {
+        if (!sortKey || !sortOrder) return filteredBooks;
+
+        return [...filteredBooks].sort((a, b) => {
+            const valA = a[sortKey];
+            const valB = b[sortKey];
+
+            if (typeof valA === "string" && typeof valB === "string") {
+                return sortOrder === "asc"
+                    ? valA.localeCompare(valB)
+                    : valB.localeCompare(valA);
+            }
+
+            if (sortKey === "date") {
+                const dateA = new Date(valA as string).getTime();
+                const dateB = new Date(valB as string).getTime();
+                return sortOrder === "asc" ? dateA - dateB : dateB - dateA;
+            }
+
+            return 0;
+        });
+    }, [filteredBooks, sortKey, sortOrder]);
+
+    const selectedColTabs = colTabs.filter(col => selectedCols.includes(col.key as string));
+
     const renderColumn = (columnKey: keyof Book, book: Book) => {
         switch (columnKey) {
             case "date":
-                return book.date;
+                return new Date(book.date).toLocaleDateString("zh-TW");
             case "title":
                 return truncateText(book.title, 20);
             case "author":
@@ -71,12 +105,15 @@ const BookListTable: React.FC<BookListTableProps> = ({ filteredBooks, colTabs })
         }
     };
 
-    // Filter colTabs based on selectedCols
-    const selectedColTabs = colTabs.filter(col => selectedCols.includes(col.key as string));
+    const getSortIndicator = (key: keyof Book) => {
+        if (sortKey !== key) return "";
+        if (sortOrder === "asc") return " ▲";
+        if (sortOrder === "desc") return " ▼";
+        return "";
+    };
 
     return (
         <div className="mt-2">
-            {/* Add the Column Selector component */}
             <ColumnSelector
                 selectedCols={selectedCols}
                 allAttributes={allAttributes}
@@ -86,19 +123,24 @@ const BookListTable: React.FC<BookListTableProps> = ({ filteredBooks, colTabs })
 
             <table className="line-clamp-2 overflow-hidden text-ellipsis max-w-[100vw] border-collapse border border-gray-300">
                 <thead>
-                    <tr className="bg-pink-100">
+                    <tr className="bg-pink-100 text-xs sm:text-sm md:text-base lg:text-md">
                         {selectedColTabs.map((col, index) => (
-                            <th key={index} className="border border-gray-300 px-4 py-2">
+                            <th
+                                key={index}
+                                onClick={() => handleSort(col.key)}
+                                className="border border-gray-300 px-4 py-2 cursor-pointer hover:bg-pink-200"
+                            >
                                 {col.label}
+                                {getSortIndicator(col.key)}
                             </th>
                         ))}
-                        <th className="border border-gray-300 px-4 py-2">詳細資訊</th>
+                        <th className="border border-gray-300 md:px-4 md:py-2 px-2 py-1">詳細資訊</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {filteredBooks.length > 0 ? (
-                        filteredBooks.map((book, index) => (
-                            <tr key={index}>
+                    {sortedBooks.length > 0 ? (
+                        sortedBooks.map((book, index) => (
+                            <tr key={index} className="text-xs sm:text-sm md:text-base lg:text-md">
                                 {selectedColTabs.map((col, colIndex) => (
                                     <td key={colIndex} className="border border-gray-300 px-4 py-2">
                                         {renderColumn(col.key, book)}
@@ -127,7 +169,6 @@ const BookListTable: React.FC<BookListTableProps> = ({ filteredBooks, colTabs })
                 </tbody>
             </table>
 
-            {/* Modal to show detailed information */}
             <BookDetailCard selectedBook={selectedBook} closeDetailModal={closeDetailModal} colTabs={colTabs} />
         </div>
     );
