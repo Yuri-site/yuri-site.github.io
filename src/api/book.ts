@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Book } from "../types/index";
 
-const API_URL = `${import.meta.env.VITE_API_URL}/books`;
+const API_URL = `${import.meta.env.VITE_API_URL}/api/v1/books`;
 
 // Set Axios interceptor to add the Authorization header
 axios.interceptors.request.use(

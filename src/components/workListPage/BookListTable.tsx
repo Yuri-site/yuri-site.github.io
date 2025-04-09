@@ -121,7 +121,7 @@ const BookListTable: React.FC<BookListTableProps> = ({ filteredBooks, colTabs })
                 handleColSelect={handleColSelect}
             />
 
-            <table className="line-clamp-2 text-ellipsis max-w-[100vw] border-collapse border border-gray-300">
+            <table className="rounded-md line-clamp-2 text-ellipsis max-w-[100vw] border-collapse border border-gray-300">
                 <thead>
                     <tr className="bg-pink-100 text-xs sm:text-sm md:text-base lg:text-md">
                         {selectedColTabs.map((col, index) => (

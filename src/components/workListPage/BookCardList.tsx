@@ -1,23 +1,23 @@
 import React from "react";
 import { Book } from "../../types";
-import { useBookStore } from "../../store/book"; // Zustand store
-import BookCard from "./BookCard"; // BookCard component
-import BookDetailCard from "./BookDetailCard"; // BookDetail component to show modal
+import { useBookStore } from "../../store/book";
+import BookCard from "./BookCard";
+import BookDetailCard from "./BookDetailCard";
 
 interface BookCardListProps {
     filteredBooks: Book[];
-    colTabs: { key: keyof Book; label: string }[];  // Update this line to use key for filtering
+    colTabs: { key: keyof Book; label: string }[];
 }
 
 const BookCardList: React.FC<BookCardListProps> = ({ filteredBooks, colTabs }) => {
-    const { selectedBook, setSelectedBook } = useBookStore(); // Zustand state for selected book
+    const { selectedBook, setSelectedBook } = useBookStore();
 
     const handleCardClick = (book: Book) => {
-        setSelectedBook(book); // Set the selected book when clicking a card
+        setSelectedBook(book);
     };
 
     const closeDetailModal = () => {
-        setSelectedBook(null); // Close the modal by setting selectedBook to null
+        setSelectedBook(null);
     };
 
     return (
@@ -26,8 +26,8 @@ const BookCardList: React.FC<BookCardListProps> = ({ filteredBooks, colTabs }) =
                 {filteredBooks.map((book, index) => (
                     <BookCard
                         key={index}
-                        {...book} // Spread the book props to BookCard
-                        onClick={handleCardClick} // Pass onClick prop
+                        {...book}
+                        onClick={handleCardClick}
                     />
                 ))}
             </div>

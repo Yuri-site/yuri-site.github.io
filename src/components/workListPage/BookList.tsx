@@ -38,7 +38,9 @@ const BookList: React.FC<BookListProps> = ({ viewMode, searchQuery }) => {
     }, []);
 
     // Get the selected tab based on currentSeason
-    const selectedTab = tabData.find((tab) => tab.title === currentSeason);
+    const selectedTab = Array.isArray(tabData) ?
+                        tabData.find((tab) => tab.title === currentSeason)
+                        : undefined;
 
     // Fetch books based on selected tab
     // Fetch books based on selected tab

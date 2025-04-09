@@ -1,7 +1,7 @@
 import axios from "axios";
 import { BookTab } from "../types/index";
 
-const API_URL = `${import.meta.env.VITE_API_URL as string}/bookTab`;
+const API_URL = `${import.meta.env.VITE_API_URL as string}/api/v1/bookTab`;
 
 // Set Axios interceptor to add the Authorization header
 axios.interceptors.request.use(
@@ -73,4 +73,14 @@ export const deleteBookTab = async (id: string): Promise<void> => {
     console.error("Error deleting book tab:", error);
     throw error;
   }
+};
+
+// update Book Tab Order
+export const updateBookTabOrderList = async (orderList: { _id: string; order: number }[]) => {
+    try {
+        await axios.patch(`${API_URL}/orderList`, { orderList });
+        
+    } catch (err) {
+        console.error("更新排序失敗", err);
+    }
 };

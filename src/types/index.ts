@@ -18,6 +18,7 @@ export interface BookTab {
         key: keyof Book;
         label: string;
     }[];
+    order: number;
 }
 export interface LoginResponse {
   token: string; // Assuming the response contains a JWT token
