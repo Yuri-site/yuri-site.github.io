@@ -95,7 +95,7 @@ const BookListTable: React.FC<BookListTableProps> = ({ filteredBooks, colTabs })
             case "type":
                 return book.type;
             case "publisher":
-                return truncateText(book.publisher, 8);
+                return truncateText(book.publisher, 5);
             case "status":
                 return book.status;
             case "comment":
@@ -121,14 +121,14 @@ const BookListTable: React.FC<BookListTableProps> = ({ filteredBooks, colTabs })
                 handleColSelect={handleColSelect}
             />
 
-            <table className="line-clamp-2 overflow-hidden text-ellipsis max-w-[100vw] border-collapse border border-gray-300">
+            <table className="line-clamp-2 text-ellipsis max-w-[100vw] border-collapse border border-gray-300">
                 <thead>
                     <tr className="bg-pink-100 text-xs sm:text-sm md:text-base lg:text-md">
                         {selectedColTabs.map((col, index) => (
                             <th
                                 key={index}
                                 onClick={() => handleSort(col.key)}
-                                className="border border-gray-300 px-4 py-2 cursor-pointer hover:bg-pink-200"
+                                className="border border-gray-300 md:px-4 md:py-2 px-2 py-1 cursor-pointer hover:bg-pink-200"
                             >
                                 {col.label}
                                 {getSortIndicator(col.key)}
@@ -142,11 +142,11 @@ const BookListTable: React.FC<BookListTableProps> = ({ filteredBooks, colTabs })
                         sortedBooks.map((book, index) => (
                             <tr key={index} className="text-xs sm:text-sm md:text-base lg:text-md">
                                 {selectedColTabs.map((col, colIndex) => (
-                                    <td key={colIndex} className="border border-gray-300 px-4 py-2">
+                                    <td key={colIndex} className="border border-gray-300 md:px-4 md:py-2 px-2 py-1 break-all whitespace-normal">
                                         {renderColumn(col.key, book)}
                                     </td>
                                 ))}
-                                <td className="border border-gray-300 px-4 py-2">
+                                <td className="border border-gray-300 md:px-4 md:py-2 px-2 py-1">
                                     <button
                                         onClick={() => handleDetailClick(book)}
                                         className="text-blue-500 hover:text-blue-700"
