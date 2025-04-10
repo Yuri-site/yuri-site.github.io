@@ -1,10 +1,8 @@
-import BookManagement from "../../components/dashboard/BookManagement";
-const BookManagementPage = () => {
+const ArticleManagementPage = () => {
     return (
         <div>
-            <BookManagement />
         </div>
     );
 };
 
-export default BookManagementPage;
+export default ArticleManagementPage;

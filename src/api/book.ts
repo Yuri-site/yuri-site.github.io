@@ -3,13 +3,12 @@ import { Book } from "../types/index";
 
 const API_URL = `${import.meta.env.VITE_API_URL}/api/v1/books`;
 
-// Set Axios interceptor to add the Authorization header
 axios.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem("authToken"); // Retrieve token from localStorage
+    const token = localStorage.getItem("authToken");
     if (token) {
-      config.headers = config.headers || {};  // Ensure headers exist
-      config.headers["Authorization"] = `Bearer ${token}`; // Add Authorization header
+      config.headers = config.headers || {};
+      config.headers["Authorization"] = `Bearer ${token}`;
     }
     return config;
   },

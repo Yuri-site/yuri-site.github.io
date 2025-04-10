@@ -18,12 +18,11 @@ const BookList: React.FC<BookListProps> = ({ viewMode, searchQuery }) => {
     const [tabData, setTabData] = useState<BookTab[]>([]);
     const [error, setError] = useState<string | null>(null);
 
-    // Fetch tabData from the backend
     useEffect(() => {
         const loadTabs = async () => {
             try {
-                const tabs = await fetchBookTabs(); // Requesting bookTabs
-                setTabData(tabs); // Assuming 'tabs' is an array of Tab objects
+                const tabs = await fetchBookTabs();
+                setTabData(tabs);
             } catch (err) {
                 setError("載入分類失敗");
                 console.error(err);
@@ -37,24 +36,19 @@ const BookList: React.FC<BookListProps> = ({ viewMode, searchQuery }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    // Get the selected tab based on currentSeason
     const selectedTab = Array.isArray(tabData) ?
                         tabData.find((tab) => tab.title === currentSeason)
                         : undefined;
 
-    // Fetch books based on selected tab
-    // Fetch books based on selected tab
     useEffect(() => {
-        // Clear books when tab changes - this is important!
         setBooks([]);
         
-        if (!selectedTab || !selectedTab._id) return; // Check if _id is defined
+        if (!selectedTab || !selectedTab._id) return;
 
         setLoading(true);
-        // Fetch books using the selected tab's _id
+        
         fetchBooksByTab(selectedTab._id)
             .then((data) => {
-                // Filter books based on the selectedTab's col_tabs
                 const filteredBooks = data.filter((book: Book) =>
                     selectedTab.col_tabs.some((col) => book[col.key])
                 );
@@ -62,9 +56,7 @@ const BookList: React.FC<BookListProps> = ({ viewMode, searchQuery }) => {
             })
             .catch((error) => {
                 console.error("Error fetching books data:", error);
-                // Clear books on error so old data doesn't remain
                 setBooks([]);
-                // Set an error message if needed
                 setError(`無法獲取 ${selectedTab.title} 分類的書籍`);
             })
             .finally(() => {
@@ -72,9 +64,8 @@ const BookList: React.FC<BookListProps> = ({ viewMode, searchQuery }) => {
             });
     }, [selectedTab]);
 
-    // Helper function to filter books based on the search query
     const filterBooks = (books: Book[], query: string): Book[] => {
-        if (!query) return books; // If no query, return all books
+        if (!query) return books;
 
         const lowerCaseQuery = query.toLowerCase();
 
@@ -85,14 +76,12 @@ const BookList: React.FC<BookListProps> = ({ viewMode, searchQuery }) => {
         );
     };
 
-    // Apply filtering
     const filteredBooks = filterBooks(books, searchQuery);
 
     if (loading) {
         return <div>Loading...</div>;
     }
 
-    // Grid or List view
     if (viewMode === "grid") {
         return <BookCardList filteredBooks={filteredBooks} colTabs={selectedTab?.col_tabs || []} />;
     }

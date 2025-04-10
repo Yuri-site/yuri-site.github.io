@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { logout } from '../../api/auth';
 
@@ -36,8 +36,8 @@ const Sidebar: React.FC = () => {
     }, [location.pathname]);
 
     const handleLogout = () => {
-        logout();  // Remove token
-        navigate('/login');  // Redirect to login page
+        logout();
+        navigate('/login');
     };
 
     return (

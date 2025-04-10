@@ -1,4 +1,3 @@
-// store/authStore.ts
 import {create} from "zustand";
 
 interface AuthState {
@@ -8,7 +7,7 @@ interface AuthState {
 }
 
 export const useAuthStore = create<AuthState>((set) => ({
-  token: localStorage.getItem("authToken") || null, // 預設從 localStorage 讀取 token
+  token: localStorage.getItem("authToken") || null,
   setToken: (token: string) => {
     localStorage.setItem("authToken", token);
     set({ token });

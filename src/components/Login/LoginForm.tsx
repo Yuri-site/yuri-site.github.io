@@ -1,4 +1,3 @@
-// components/LoginForm.tsx
 import React, { useState } from "react";
 import { useAuthStore } from "../../store/authStore";
 
@@ -22,7 +21,7 @@ const LoginForm: React.FC = () => {
 
       const data = await response.json();
       if (response.ok) {
-        setToken(data.token); // 儲存 token 到 zustand 和 localStorage
+        setToken(data.token);
       } else {
         setError(data.message || "登入失敗");
       }

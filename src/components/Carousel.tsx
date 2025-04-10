@@ -1,17 +1,16 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 
 interface CarouselProps {
     images: string[];
-    interval?: number; // Optional, default interval time in milliseconds
+    interval?: number;
 }
 
 const Carousel: React.FC<CarouselProps> = ({ images, interval = 3000 }) => {
     const [activeIndex, setActiveIndex] = useState(0);
-    const startX = useRef(0); // Starting X position of the drag
-    const isDragging = useRef(false); // Flag to check if dragging is active
+    const startX = useRef(0);
+    const isDragging = useRef(false);
 
-    // Auto carousel effect
     useEffect(() => {
         const timer = setInterval(() => {
             setActiveIndex((prevIndex) => (prevIndex + 1) % images.length);
@@ -26,7 +25,7 @@ const Carousel: React.FC<CarouselProps> = ({ images, interval = 3000 }) => {
 
     const handleMouseDown = (e: React.MouseEvent) => {
         isDragging.current = true;
-        startX.current = e.clientX; // Record the starting position of the drag
+        startX.current = e.clientX;
     };
 
     const handleMouseMove = (e: React.MouseEvent) => {
@@ -34,11 +33,9 @@ const Carousel: React.FC<CarouselProps> = ({ images, interval = 3000 }) => {
 
         const moveX = e.clientX - startX.current;
         if (moveX > 50) {
-            // Dragged right
             setActiveIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
             isDragging.current = false;
         } else if (moveX < -50) {
-            // Dragged left
             setActiveIndex((prevIndex) => (prevIndex + 1) % images.length);
             isDragging.current = false;
         }
@@ -50,7 +47,7 @@ const Carousel: React.FC<CarouselProps> = ({ images, interval = 3000 }) => {
 
     const handleTouchStart = (e: React.TouchEvent) => {
         isDragging.current = true;
-        startX.current = e.touches[0].clientX; // Record the starting position of the touch
+        startX.current = e.touches[0].clientX;
     };
 
     const handleTouchMove = (e: React.TouchEvent) => {
@@ -58,11 +55,9 @@ const Carousel: React.FC<CarouselProps> = ({ images, interval = 3000 }) => {
 
         const moveX = e.touches[0].clientX - startX.current;
         if (moveX > 50) {
-            // Dragged right
             setActiveIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
             isDragging.current = false;
         } else if (moveX < -50) {
-            // Dragged left
             setActiveIndex((prevIndex) => (prevIndex + 1) % images.length);
             isDragging.current = false;
         }
@@ -114,7 +109,7 @@ const Carousel: React.FC<CarouselProps> = ({ images, interval = 3000 }) => {
 
 Carousel.propTypes = {
     images: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    interval: PropTypes.number, // Validate that interval is a number
+    interval: PropTypes.number,
 };
 
 export default Carousel;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { BookTab } from "../../../types";
 import {
   DndContext,
@@ -27,7 +27,7 @@ interface BookTabListProps {
   handleEdit: (tab: BookTab) => void;
   handleDelete: (id: string) => void;
   handleSort: (order: string[]) => void;
-  onTabsUpdated?: () => void; // 新增回調用於通知父組件更新
+  onTabsUpdated?: () => void;
 }
 
 interface SortableBookTab {
@@ -111,7 +111,6 @@ const BookTabList: React.FC<BookTabListProps> = ({
   const [isUpdating, setIsUpdating] = useState(false);
   const API_URL = `${import.meta.env.VITE_API_URL as string}/api/v1/bookTab`;
 
-  // Watch for changes to the tabs prop from parent
   useEffect(() => {
     if (!isUpdating && tabs.length > 0) {
       setCurrentTabs(tabs);
@@ -134,7 +133,7 @@ const BookTabList: React.FC<BookTabListProps> = ({
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {
-        distance: 5, // Minimum distance before dragging starts
+        distance: 5,
       },
     }),
     useSensor(KeyboardSensor, {
@@ -163,7 +162,7 @@ const BookTabList: React.FC<BookTabListProps> = ({
     // Update the local state immediately for better UX
     setCurrentTabs(prevTabs => {
       const reorderedTabs = [...prevTabs];
-      // Update the order property of each tab
+
       updatedItems.forEach((item, index) => {
         const tabIndex = reorderedTabs.findIndex(tab => tab._id === item._id);
         if (tabIndex !== -1) {
@@ -176,34 +175,28 @@ const BookTabList: React.FC<BookTabListProps> = ({
       return reorderedTabs;
     });
     
-    // Prepare updated order list
     const updatedOrderList = updatedItems.map((item, index) => ({
       _id: item._id,
       order: index,
     }));
 
     try {
-      // Update order on server
       await axios.patch(`${API_URL}/orderList`, {
         orderList: updatedOrderList,
       });
 
       console.log("排序更新成功");
 
-      // If you need to pass sorted IDs to parent component
       handleSort(updatedItems.map(item => item._id));
       
-      // 通知父組件更新
       if (onTabsUpdated) {
         onTabsUpdated();
       }
     } catch (err) {
       console.error("更新排序失敗", err);
-      // In case of error, fetch the original data
       try {
         const response = await axios.get<BookTab[]>(`${API_URL}`);
         setCurrentTabs(response.data);
-        // 即使錯誤處理後重新獲取了數據，也通知父組件
         if (onTabsUpdated) {
           onTabsUpdated();
         }
@@ -215,7 +208,6 @@ const BookTabList: React.FC<BookTabListProps> = ({
     }
   };
 
-  // 使用帶有唯一鍵的渲染方式確保更新時 DndContext 完全重新渲染
   const renderKey = useMemo(() => {
     return sortableItems.map(item => item._id).join('-');
   }, [sortableItems]);

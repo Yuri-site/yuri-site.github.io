@@ -1,5 +1,4 @@
-// src/pages/BookTabManagement.tsx
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
     fetchBookTabs,
     createBookTab,
@@ -86,7 +85,7 @@ const BookTabManagement: React.FC = () => {
                 const created = await createBookTab(updatedFormData);
                 setTabs((prev) => [...prev, created]);
             }
-            setFormData(emptyTab); // Reset form data
+            setFormData(emptyTab);
         } catch (err) {
             console.log(err);
             setError("提交失敗");
@@ -110,11 +109,10 @@ const BookTabManagement: React.FC = () => {
 
     // Handle the new sorting logic
     const handleSort = (order: string[]) => {
-        // 這裡只保存臨時排序結果，完整數據將在 onTabsUpdated 中更新
+        
         console.log("排序順序已更新:", order);
     };
     
-    // 拖放排序後重新載入數據
     const handleTabsUpdated = () => {
         console.log("標籤更新，重新載入數據");
         loadTabs();

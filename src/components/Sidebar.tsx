@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 
@@ -22,7 +22,6 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, navItems, dropdownTitle, drop
     const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
     const [activeNav, setActiveNav] = useState<string | null>(null);
     
-    // Update active navigation state based on pathname
     useEffect(() => {
         setActiveNav(location.pathname);
     }, [location.pathname]);

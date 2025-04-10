@@ -1,4 +1,3 @@
-// components/PrivateRoute.tsx
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "../../store/authStore";
@@ -20,7 +19,6 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({ children }) => {
       }
 
       try {
-        // 向後端驗證 token 是否有效
         const response = await fetch("/api/verify-token", {
           method: "POST",
           headers: {

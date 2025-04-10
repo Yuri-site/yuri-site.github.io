@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Book } from "../../types";
 import { useBookStore } from "../../store/book";
 import BookDetailCard from "./BookDetailCard";
@@ -20,7 +20,6 @@ const BookListTable: React.FC<BookListTableProps> = ({ filteredBooks, colTabs })
     const [sortKey, setSortKey] = useState<keyof Book | null>("date");
     const [sortOrder, setSortOrder] = useState<"asc" | "desc" | null>("desc");
 
-    // 初始化顯示欄位：手機顯示 3 個欄，桌機 5 個
     useEffect(() => {
         if (colTabs.length > 0) {
             const isMobile = window.innerWidth < 768;
@@ -51,7 +50,6 @@ const BookListTable: React.FC<BookListTableProps> = ({ filteredBooks, colTabs })
 
     const handleSort = (key: keyof Book) => {
         if (sortKey === key) {
-            // 在同一欄位間切換 asc <-> desc
             setSortOrder((prev) => (prev === "asc" ? "desc" : "asc"));
         } else {
             setSortKey(key);
@@ -66,21 +64,30 @@ const BookListTable: React.FC<BookListTableProps> = ({ filteredBooks, colTabs })
             const valA = a[sortKey];
             const valB = b[sortKey];
 
+            if (sortKey === "date") {
+                const dateA = new Date(valA as string);
+                const dateB = new Date(valB as string);
+
+                if (isNaN(dateA.getTime())) return 1;
+                if (isNaN(dateB.getTime())) return -1;
+
+                return sortOrder === "asc"
+                    ? dateA.getTime() - dateB.getTime()
+                    : dateB.getTime() - dateA.getTime();
+            }
+
             if (typeof valA === "string" && typeof valB === "string") {
                 return sortOrder === "asc"
                     ? valA.localeCompare(valB)
                     : valB.localeCompare(valA);
             }
 
-            if (sortKey === "date") {
-                const dateA = new Date(valA as string).getTime();
-                const dateB = new Date(valB as string).getTime();
-                return sortOrder === "asc" ? dateA - dateB : dateB - dateA;
-            }
-
             return 0;
         });
     }, [filteredBooks, sortKey, sortOrder]);
+
+
+
 
     const selectedColTabs = colTabs.filter(col => selectedCols.includes(col.key as string));
 
@@ -120,54 +127,55 @@ const BookListTable: React.FC<BookListTableProps> = ({ filteredBooks, colTabs })
                 attrDisplayNames={attrDisplayNames}
                 handleColSelect={handleColSelect}
             />
-
-            <table className="rounded-md line-clamp-2 text-ellipsis max-w-[100vw] border-collapse border border-gray-300">
-                <thead>
-                    <tr className="bg-pink-100 text-xs sm:text-sm md:text-base lg:text-md">
-                        {selectedColTabs.map((col, index) => (
-                            <th
-                                key={index}
-                                onClick={() => handleSort(col.key)}
-                                className="border border-gray-300 md:px-4 md:py-2 px-2 py-1 cursor-pointer hover:bg-pink-200"
-                            >
-                                {col.label}
-                                {getSortIndicator(col.key)}
-                            </th>
-                        ))}
-                        <th className="border border-gray-300 md:px-4 md:py-2 px-2 py-1">詳細資訊</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {sortedBooks.length > 0 ? (
-                        sortedBooks.map((book, index) => (
-                            <tr key={index} className="text-xs sm:text-sm md:text-base lg:text-md">
-                                {selectedColTabs.map((col, colIndex) => (
-                                    <td key={colIndex} className="border border-gray-300 md:px-4 md:py-2 px-2 py-1 break-all whitespace-normal">
-                                        {renderColumn(col.key, book)}
+            <div className="overflow-x-auto">
+                <table className="rounded-md w-full border-collapse border border-gray-300">
+                    <thead>
+                        <tr className="bg-pink-100 text-xs sm:text-sm md:text-base lg:text-md">
+                            {selectedColTabs.map((col, index) => (
+                                <th
+                                    key={index}
+                                    onClick={() => handleSort(col.key)}
+                                    className="border border-gray-300 md:px-4 md:py-2 px-2 py-1 cursor-pointer hover:bg-pink-200"
+                                >
+                                    {col.label}
+                                    {getSortIndicator(col.key)}
+                                </th>
+                            ))}
+                            <th className="border border-gray-300 md:px-4 md:py-2 px-2 py-1">詳細資訊</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {sortedBooks.length > 0 ? (
+                            sortedBooks.map((book, index) => (
+                                <tr key={index} className="text-xs sm:text-sm md:text-base lg:text-md">
+                                    {selectedColTabs.map((col, colIndex) => (
+                                        <td key={colIndex} className="border border-gray-300 md:px-4 md:py-2 px-2 py-1 break-all whitespace-normal">
+                                            {renderColumn(col.key, book)}
+                                        </td>
+                                    ))}
+                                    <td className="border border-gray-300 md:px-4 md:py-2 px-2 py-1">
+                                        <button
+                                            onClick={() => handleDetailClick(book)}
+                                            className="text-blue-500 hover:text-blue-700"
+                                        >
+                                            詳細資訊
+                                        </button>
                                     </td>
-                                ))}
-                                <td className="border border-gray-300 md:px-4 md:py-2 px-2 py-1">
-                                    <button
-                                        onClick={() => handleDetailClick(book)}
-                                        className="text-blue-500 hover:text-blue-700"
-                                    >
-                                        詳細資訊
-                                    </button>
+                                </tr>
+                            ))
+                        ) : (
+                            <tr>
+                                <td
+                                    className="border border-gray-300 px-4 py-2 text-center"
+                                    colSpan={selectedColTabs.length + 1}
+                                >
+                                    找不到符合條件的書籍
                                 </td>
                             </tr>
-                        ))
-                    ) : (
-                        <tr>
-                            <td
-                                className="border border-gray-300 px-4 py-2 text-center"
-                                colSpan={selectedColTabs.length + 1}
-                            >
-                                找不到符合條件的書籍
-                            </td>
-                        </tr>
-                    )}
-                </tbody>
-            </table>
+                        )}
+                    </tbody>
+                </table>
+            </div>
 
             <BookDetailCard selectedBook={selectedBook} closeDetailModal={closeDetailModal} colTabs={colTabs} />
         </div>

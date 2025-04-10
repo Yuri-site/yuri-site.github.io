@@ -1,11 +1,10 @@
-// src/api/auth.ts
 import axios from 'axios';
 import { LoginResponse } from '../types';
 const API_URL = import.meta.env.VITE_API_URL as string;
 
 export const isAuthenticated = (): boolean => {
-  const token = localStorage.getItem("authToken");  // Check if the token exists in localStorage
-  return token != null;  // If token exists, user is authenticated
+  const token = localStorage.getItem("authToken");
+  return token != null;
 };
 
 export const login = async (username: string, password: string): Promise<LoginResponse> => {
@@ -17,7 +16,7 @@ export const login = async (username: string, password: string): Promise<LoginRe
 };
 
 export const logout = (): void => {
-  localStorage.removeItem("authToken"); // Remove token from localStorage
+  localStorage.removeItem("authToken");
 };
 
 

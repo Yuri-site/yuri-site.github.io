@@ -1,4 +1,3 @@
-import React from "react";
 import { Book } from "../../types";
 import { useBookStore } from "../../store/book";
 import BookCard from "./BookCard";

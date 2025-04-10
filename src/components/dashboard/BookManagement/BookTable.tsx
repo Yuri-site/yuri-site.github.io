@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Book, BookTab } from "../../../types";
 import { getTabColorClass } from "./TabUtils";
 
@@ -10,7 +10,7 @@ interface BookTableProps {
   attrDisplayNames: Record<string, string>;
   handleEdit: (book: Book) => void;
   handleDelete: (id: string) => void;
-  allAttributes?: string[]; // 添加 allAttributes 以便按照原始順序排序
+  allAttributes?: string[];
 }
 
 const BookTable: React.FC<BookTableProps> = ({
@@ -22,34 +22,28 @@ const BookTable: React.FC<BookTableProps> = ({
   handleDelete,
   allAttributes = ["date", "title", "author", "type", "publisher", "status", "imageUrl", "tabs"],
 }) => {
-  // 使用排序後的選定欄位
   const sortedSelectedCols = [...selectedCols].sort(
     (a, b) => allAttributes.indexOf(a) - allAttributes.indexOf(b)
   );
 
-  // 狀態用於排序
   const [sortedBooks, setSortedBooks] = useState<Book[]>([]);
   const [sortField, setSortField] = useState<string>("date");
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc");
 
-  // 當書籍數據或排序條件改變時更新
   useEffect(() => {
     const sorted = [...books].sort((a, b) => {
-      // 特殊處理日期欄位
       if (sortField === "date") {
         const dateA = new Date(a.date).getTime();
         const dateB = new Date(b.date).getTime();
         return sortDirection === "asc" ? dateA - dateB : dateB - dateA;
       }
       
-      // 特殊處理標籤欄位
       if (sortField === "tabs") {
         const tabsA = a.tabs?.length || 0;
         const tabsB = b.tabs?.length || 0;
         return sortDirection === "asc" ? tabsA - tabsB : tabsB - tabsA;
       }
       
-      // 處理其他欄位
       const valueA = (a as any)[sortField] || "";
       const valueB = (b as any)[sortField] || "";
       
@@ -65,13 +59,10 @@ const BookTable: React.FC<BookTableProps> = ({
     setSortedBooks(sorted);
   }, [books, sortField, sortDirection]);
 
-  // 處理欄位標題點擊排序
   const handleSort = (field: string) => {
     if (field === sortField) {
-      // 切換排序方向
       setSortDirection(sortDirection === "asc" ? "desc" : "asc");
     } else {
-      // 設置新的排序欄位，默認升序
       setSortField(field);
       setSortDirection("asc");
     }

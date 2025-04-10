@@ -1,5 +1,3 @@
-import React from "react";
-
 interface ColumnSelectorProps {
   selectedCols: string[];
   allAttributes: string[];
@@ -15,14 +13,10 @@ const ColumnSelector: React.FC<ColumnSelectorProps> = ({
 }) => {
   const toggleColumn = (attr: string) => {
     if (selectedCols.includes(attr)) {
-      // 移除已選欄位
       handleColSelect(selectedCols.filter(col => col !== attr));
     } else {
-      // 加入新欄位(不超過6個)
       if (selectedCols.length < 6) {
-        // 添加新欄位，但不改變順序
         const newSelectedCols = [...selectedCols, attr];
-        // 根據 allAttributes 中的定義順序排序
         newSelectedCols.sort((a, b) => 
           allAttributes.indexOf(a) - allAttributes.indexOf(b)
         );

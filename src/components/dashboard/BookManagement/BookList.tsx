@@ -60,8 +60,8 @@ const BookList: React.FC = () => {
     const [editingId, setEditingId] = useState<string | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-    const [searchQuery, setSearchQuery] = useState(""); // 新增搜尋文字
-    const [selectedTab, setSelectedTab] = useState<string | null>(null); // 新增選擇的 tab
+    const [searchQuery, setSearchQuery] = useState("");
+    const [selectedTab, setSelectedTab] = useState<string | null>(null);
 
     useEffect(() => {
         const loadData = async () => {
@@ -157,16 +157,14 @@ const BookList: React.FC = () => {
         setSelectedTab(tabId);
     };
 
-    // 過濾書籍：基於搜尋文字和選擇的 tab
     const filteredBooks = books.filter((book) => {
-    // 防止 undefined 或 null 進行 toLowerCase 操作
     const matchesSearch =
         (book.title?.toLowerCase().includes(searchQuery.toLowerCase()) ?? false) ||
         (book.author?.toLowerCase().includes(searchQuery.toLowerCase()) ?? false) ||
         (book.date?.includes(searchQuery) ?? false);
 
     const matchesTab =
-        selectedTab ? book.tabs?.includes(selectedTab) : true; // 篩選 tab
+        selectedTab ? book.tabs?.includes(selectedTab) : true;
     return matchesSearch && matchesTab;
     });
 
@@ -178,7 +176,7 @@ const BookList: React.FC = () => {
             <h2 className="text-2xl font-bold mb-4 text-center">書籍管理</h2>
 
 
-            {/* 表單 */}
+            {/* Book Form */}
             <BookForm
                 formData={formData}
                 tabs={tabs}
@@ -189,7 +187,7 @@ const BookList: React.FC = () => {
             />
 
 
-            {/* 選擇顯示欄位 */}
+            {/* Column Selector */}
             <ColumnSelector
                 selectedCols={selectedCols}
                 allAttributes={allAttributes}
@@ -199,7 +197,7 @@ const BookList: React.FC = () => {
 
             <div className="flex">
 
-                {/* 選擇書籍標籤 */}
+                {/* select Book Tab */}
                 <div className="mb-6">
                     <label htmlFor="tabFilter" className="mr-2">篩選標籤:</label>
                     <select
@@ -217,7 +215,7 @@ const BookList: React.FC = () => {
                     </select>
                 </div>
 
-                {/* 搜尋欄 */}
+                {/* search bar */}
                 <div className="ml-12 mb-6 w-96">
                     <input
                     type="text"
@@ -228,7 +226,6 @@ const BookList: React.FC = () => {
                     />
                 </div>
             </div>
-            {/* 書籍表格 - 傳遞 allAttributes 以確保按照原始順序顯示 */}
             <BookTable
                 books={filteredBooks}
                 tabs={tabs}

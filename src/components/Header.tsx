@@ -1,7 +1,7 @@
-import { useState, useEffect, useRef } from "react";
-import PropTypes from "prop-types";
-import { Link, useLocation } from "react-router-dom";
 import Sidebar from "./Sidebar";
+import PropTypes from "prop-types";
+import { useState, useEffect, useRef } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 interface NavItem {
     text: string;
@@ -24,12 +24,10 @@ const Header: React.FC<HeaderProps> = ({ logoText, navItems, dropdownTitle, drop
     const dropdownRef = useRef<HTMLDivElement | null>(null);
     const dropdownButtonRef = useRef<HTMLButtonElement | null>(null);
 
-    // update active navigation state based on pathname
     useEffect(() => {
         setActiveNav(location.pathname);
     }, [location.pathname]);
 
-    // hide dropdown
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
             if (
@@ -46,7 +44,6 @@ const Header: React.FC<HeaderProps> = ({ logoText, navItems, dropdownTitle, drop
         };
     }, []);
 
-    // toggle dropdown visibility on title click
     const handleDropdownToggle = () => {
         setIsDropdownVisible((prevState) => !prevState);
     };

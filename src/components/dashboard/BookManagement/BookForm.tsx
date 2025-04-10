@@ -1,4 +1,3 @@
-import React from "react";
 import { Book, BookTab } from "../../../types";
 import { getTabColorClass } from "./TabUtils";
 
@@ -21,8 +20,8 @@ const BookForm: React.FC<BookFormProps> = ({
 }) => {
     const formatDateForInput = (dateStr: string): string => {
         const date = new Date(dateStr);
-        if (isNaN(date.getTime())) return ""; // 無效日期，回傳空字串避免錯誤
-        return date.toISOString().split("T")[0]; // 回傳 YYYY-MM-DD
+        if (isNaN(date.getTime())) return "";
+        return date.toISOString().split("T")[0];
     };
   return (
     <form
@@ -90,7 +89,7 @@ const BookForm: React.FC<BookFormProps> = ({
         />
       </div>
 
-      {/* 選擇書籍所屬 tab */}
+      {/* select tab */}
       <div className="mt-4">
         <label className="font-semibold mb-1 block">所屬分類：</label>
         <div className="flex flex-wrap gap-2 mt-2">

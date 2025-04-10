@@ -1,4 +1,3 @@
-// src/pages/BookTabManagement/BookTabForm.tsx
 import { BookTab } from "../../../types";
 
 const bookKeys = [

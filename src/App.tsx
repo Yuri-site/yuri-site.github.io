@@ -1,4 +1,3 @@
-// src/App.tsx
 import React, { Suspense } from 'react';
 import { createHashRouter, RouterProvider } from 'react-router-dom';
 import Home from './pages/Home';
@@ -11,7 +10,7 @@ import DashboardLayout from './pages/dashboard/Layout';
 import BookManagementPage from './pages/dashboard/BookManagement';
 import BookTabManagementPage from './pages/dashboard/BookTabManagement';
 import CarouselManagementPage from './pages/dashboard/CarouselManagement';
-import ProtectedRoute from './pages/ProtectedRoute'; // Import ProtectedRoute
+import ProtectedRoute from './pages/ProtectedRoute';
 import Login from './pages/Login';
 
 const router = createHashRouter([

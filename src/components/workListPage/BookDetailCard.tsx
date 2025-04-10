@@ -3,7 +3,7 @@ import { Book } from "../../types";
 interface BookDetailProps {
     selectedBook: Book | null;
     closeDetailModal: () => void;
-    colTabs: { key: keyof Book; label: string }[]; // 添加 colTabs 屬性
+    colTabs: { key: keyof Book; label: string }[];
 }
 
 const BookDetailCard: React.FC<BookDetailProps> = ({ selectedBook, closeDetailModal, colTabs }) => {
@@ -19,7 +19,7 @@ const BookDetailCard: React.FC<BookDetailProps> = ({ selectedBook, closeDetailMo
                 onClick={(e) => e.stopPropagation()}
             >
                 <h3 className="text-xl font-bold mb-4">書籍詳細資訊</h3>
-                {/* 根據 colTabs 動態顯示 */}
+                {/* Display by colTabs */}
                 {colTabs.map((col, index) => (
                     <p key={index}>
                         <strong>{col.label}:</strong> {selectedBook[col.key] || "-"}
