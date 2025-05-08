@@ -30,8 +30,8 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, navItems, dropdownTitle, drop
         <>
             {/* Overlay */}
             <div
-                className={`font-notoTC fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity ${
-                    isOpen ? "opacity-100 visible" : "opacity-0 invisible"
+                className={`font-notoTC fixed inset-0 bg-black bg-opacity-50 z-20 transition-opacity ${
+                    isOpen ? "opacity-100 visible" : "opacity-0 hidden"
                 }`}
                 onClick={onClose}
             ></div>
@@ -40,7 +40,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, navItems, dropdownTitle, drop
             <div
                 className={`fixed top-0 right-0 h-full w-64 bg-pink-300 text-white shadow-lg transform transition-transform ${
                     isOpen ? "translate-x-0" : "translate-x-full"
-                } z-50`}
+                } z-30`}
             >
                 {/* Close Button */}
                 <button

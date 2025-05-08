@@ -61,7 +61,7 @@ const Header: React.FC<HeaderProps> = ({ logoText, navItems, dropdownTitle, drop
     return (
         <>
             <header
-                className={`bg-pink-300 text-white max-w-screen w-full sticky top-0 right-0 left-0 z-50 duration-300 transition-all  ${
+                className={`bg-pink-300 text-white w-screen sticky top-0 z-10 transition-all duration-300  ${
                     isScrolled ? "opacity-90 shadow-md" : ""
                 }`}
             >
@@ -105,7 +105,7 @@ const Header: React.FC<HeaderProps> = ({ logoText, navItems, dropdownTitle, drop
                             <button
                                 // onClick={handleDropdownToggle}
                                 ref={dropdownButtonRef}
-                                className={`px-4 py-2  transition-color flex items-center ${
+                                className={`px-4 py-2  transition-colors flex items-center ${
                                     isDropdownVisible
                                         ? "bg-white text-pink-500 rounded-t-[10px]"
                                         : "hover:bg-white hover:text-pink-500 rounded-full"
@@ -114,8 +114,8 @@ const Header: React.FC<HeaderProps> = ({ logoText, navItems, dropdownTitle, drop
                                 {dropdownTitle} <span className="ml-1">▼</span>
                             </button>
                             <div
-                                className={`text-lg absolute bg-white text-gray-800 rounded shadow-md w-40 transition-all ${
-                                    isDropdownVisible ? "block opacity-100" : "hidden opacity-0"
+                                className={`text-lg absolute bg-white text-gray-800 rounded shadow-md w-40 transition-opacity duration-300 ${
+                                    isDropdownVisible ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
                                 }`}
                             >
                                 {dropdownItems.map((item) => (
