@@ -73,7 +73,7 @@ const Header: React.FC<HeaderProps> = ({ logoText, navItems, dropdownTitle, drop
 
                     {/* Hamburger Menu Icon for Small Screens */}
                     <button
-                        className="text-2xl sm:hidden focus:outline-none"
+                        className="rounded-sm text-2xl sm:hidden focus:outline-none"
                         onClick={() => setIsSidebarOpen(true)}
                     >
                         <i className="fas fa-bars"></i>

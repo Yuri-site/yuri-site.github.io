@@ -8,7 +8,7 @@ interface BookCardProps extends Book {
 }
 
 const BookCard: React.FC<BookCardProps> = ({ title, date, author, type, publisher, status, comment, imageUrl, onClick }) => {
-    const tags = [type, publisher, status];
+    const tags = [(date||status), publisher];
     const visibleTags = tags.slice(0, MAX_VISIBLE_TAGS);
     const hiddenTagCount = tags.length - MAX_VISIBLE_TAGS;
 
@@ -32,14 +32,14 @@ const BookCard: React.FC<BookCardProps> = ({ title, date, author, type, publishe
             </div>
 
             {/* Content Section */}
-            <div className="border-t-2 border-gray-500 p-4 max-h-40">
+            <div className="border-t-2 border-gray-500 p-4 max-h-54">
                 <h3 className="line-clamp-2 overflow-hidden text-ellipsis text-lg font-bold text-gray-800 cursor-pointer"
                     onClick={() => onClick({ title, date,  author, type, publisher, status, comment, imageUrl })}
                 >
                     {title}
                 </h3>
                 <p className="text-gray-600 text-sm mt-1">{author}</p>
-                <div className="flex flex-wrap gap-2 mt-4">
+                <div className="flex flex-wrap gap-2 mt-2 mb-2">
                     {visibleTags.map((tag, index) => (
                         <span
                             key={index}

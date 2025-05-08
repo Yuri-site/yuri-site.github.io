@@ -12,16 +12,19 @@ const ColumnSelector: React.FC<ColumnSelectorProps> = ({
     handleColSelect,
 }) => {
     const toggleColumn = (attr: string) => {
+        const isFirst = attr === allAttributes[1];
+        if (isFirst) return; // 第一個欄位不可被取消
+
         if (selectedCols.includes(attr)) {
-        handleColSelect(selectedCols.filter(col => col !== attr));
+            handleColSelect(selectedCols.filter(col => col !== attr));
         } else {
-        if (selectedCols.length < 6) {
-            const newSelectedCols = [...selectedCols, attr];
-            newSelectedCols.sort((a, b) => 
-            allAttributes.indexOf(a) - allAttributes.indexOf(b)
-            );
-            handleColSelect(newSelectedCols);
-        }
+            if (selectedCols.length < 6) {
+                const newSelectedCols = [...selectedCols, attr];
+                newSelectedCols.sort((a, b) =>
+                    allAttributes.indexOf(a) - allAttributes.indexOf(b)
+                );
+                handleColSelect(newSelectedCols);
+            }
         }
     };
 

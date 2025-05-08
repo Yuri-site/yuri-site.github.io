@@ -1,7 +1,15 @@
 @import "@fortawesome/fontawesome-free/css/all.min.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "Chenyu";
+  src: url("/fonts/ChenYuluoyan-2.0-Thin.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
 
 @layer utilities {
   .scrollbar-transparent::-webkit-scrollbar {

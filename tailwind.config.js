@@ -28,7 +28,11 @@ export default {
                 notoTC: [
                     'Noto Sans TC',
                     'sans-serif'
-                ]
+                ],
+                chenyu: [
+                    'Chenyu', 
+                    'sans-serif'
+                ],
             },
             borderRadius: {
                 lg: 'var(--radius)',
