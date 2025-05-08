@@ -127,21 +127,21 @@ const BookListTable: React.FC<BookListTableProps> = ({ filteredBooks, colTabs })
                 attrDisplayNames={attrDisplayNames}
                 handleColSelect={handleColSelect}
             />
-            <div className="overflow-x-auto">
-                <table className="rounded-md w-full border-collapse border border-gray-300">
+            <div className="overflow-x-auto rounded-t-lg mb-12 shadow-md">
+                <table className="w-full border-collapse border border-gray-300 ">
                     <thead>
-                        <tr className="bg-pink-100 text-xs sm:text-sm md:text-base lg:text-md">
+                        <tr className="bg-pink-400 text-xs text-white sm:text-sm md:text-base lg:text-md">
                             {selectedColTabs.map((col, index) => (
                                 <th
                                     key={index}
                                     onClick={() => handleSort(col.key)}
-                                    className="border border-gray-300 md:px-4 md:py-2 px-2 py-1 cursor-pointer hover:bg-pink-200"
+                                    className="border border-gray-1s00 md:px-4 md:py-2 px-2 py-1 cursor-pointer hover:text-slate-100 hover:bg-pink-300"
                                 >
                                     {col.label}
                                     {getSortIndicator(col.key)}
                                 </th>
                             ))}
-                            <th className="border border-gray-300 md:px-4 md:py-2 px-2 py-1">詳細資訊</th>
+                            <th className="md:px-4 md:py-2 px-2 py-1">詳細資訊</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -149,7 +149,7 @@ const BookListTable: React.FC<BookListTableProps> = ({ filteredBooks, colTabs })
                             sortedBooks.map((book, index) => (
                                 <tr key={index} className="text-xs sm:text-sm md:text-base lg:text-md">
                                     {selectedColTabs.map((col, colIndex) => (
-                                        <td key={colIndex} className="border border-gray-300 md:px-4 md:py-2 px-2 py-1 break-all whitespace-normal">
+                                        <td key={colIndex} className="border border-gray-200 md:px-4 md:py-2 px-2 py-1 break-all whitespace-normal">
                                             {renderColumn(col.key, book)}
                                         </td>
                                     ))}

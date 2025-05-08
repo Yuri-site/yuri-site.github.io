@@ -42,9 +42,7 @@ const ColumnSelector: React.FC<ColumnSelectorProps> = ({
                 disabled={selectedCols.length >= 6 && !selectedCols.includes(attr)}
             >
                 {attrDisplayNames[attr]}
-                {selectedCols.includes(attr) && (
-                <span className="ml-2">✓</span>
-                )}
+                {selectedCols.includes(attr)}
             </button>
             ))}
         </div>

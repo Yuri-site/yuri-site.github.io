@@ -17,7 +17,7 @@ const WorkList = () => {
     }, [searchQuery]);
 
     return (
-        <div className="flex flex-col items-center w-screen p-4 mt-12">
+        <div className="flex flex-col items-center w-screen p-4 mt-12 h-[120vh]">
             {/* select tabs */}
             <BooksTabs />
 

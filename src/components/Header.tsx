@@ -20,6 +20,7 @@ const Header: React.FC<HeaderProps> = ({ logoText, navItems, dropdownTitle, drop
     const [activeNav, setActiveNav] = useState<string | null>(null);
     const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
     const [isDropdownVisible, setIsDropdownVisible] = useState<boolean>(false);
+    const [isScrolled, setIsScrolled] = useState(false);
     
     const dropdownRef = useRef<HTMLDivElement | null>(null);
     const dropdownButtonRef = useRef<HTMLButtonElement | null>(null);
@@ -27,6 +28,18 @@ const Header: React.FC<HeaderProps> = ({ logoText, navItems, dropdownTitle, drop
     useEffect(() => {
         setActiveNav(location.pathname);
     }, [location.pathname]);
+
+
+    useEffect(() => {
+        const handleScroll = () => {
+            requestAnimationFrame(() => {
+            setIsScrolled(window.scrollY > 0);
+            });
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -44,13 +57,14 @@ const Header: React.FC<HeaderProps> = ({ logoText, navItems, dropdownTitle, drop
         };
     }, []);
 
-    const handleDropdownToggle = () => {
-        setIsDropdownVisible((prevState) => !prevState);
-    };
 
     return (
         <>
-            <header className="bg-pink-300 text-white shadow-md max-w-screen w-full">
+            <header
+                className={`bg-pink-300 text-white max-w-screen w-full sticky top-0 right-0 left-0 z-50 duration-300 transition-all  ${
+                    isScrolled ? "opacity-90 shadow-md" : ""
+                }`}
+            >
                 <div className="container mx-auto flex items-center justify-between py-4 px-6">
                     {/* Logo Section */}
                     <div className="text-2xl font-bold">
@@ -82,20 +96,25 @@ const Header: React.FC<HeaderProps> = ({ logoText, navItems, dropdownTitle, drop
                         ))}
 
                         {/* Dropdown Menu */}
-                        <div className="text-xl font-bold relative" ref={dropdownRef}>
+                        <div 
+                            className="text-xl font-bold relative" 
+                            ref={dropdownRef} 
+                            onMouseEnter={() => setIsDropdownVisible(true)}
+                            onMouseLeave={() => setIsDropdownVisible(false)}
+                        >
                             <button
-                                onClick={handleDropdownToggle}
+                                // onClick={handleDropdownToggle}
                                 ref={dropdownButtonRef}
-                                className={`px-4 py-2 rounded-full transition-colors flex items-center ${
+                                className={`px-4 py-2  transition-color flex items-center ${
                                     isDropdownVisible
-                                        ? "bg-white text-pink-500"
-                                        : "hover:bg-white hover:text-pink-500"
+                                        ? "bg-white text-pink-500 rounded-t-[10px]"
+                                        : "hover:bg-white hover:text-pink-500 rounded-full"
                                 }`}
                             >
                                 {dropdownTitle} <span className="ml-1">▼</span>
                             </button>
                             <div
-                                className={`text-lg absolute bg-white text-gray-800 rounded shadow-md mt-2 w-40 transition-all ${
+                                className={`text-lg absolute bg-white text-gray-800 rounded shadow-md w-40 transition-all ${
                                     isDropdownVisible ? "block opacity-100" : "hidden opacity-0"
                                 }`}
                             >

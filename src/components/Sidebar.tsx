@@ -53,7 +53,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, navItems, dropdownTitle, drop
                 {/* Navigation Links */}
                 <nav className="flex flex-col space-y-4 mt-4 px-6">
                     {navItems.map((item) => (
-                       <Link
+                        <Link
                                 key={item.text}
                                 to={item.link}
                                 className={`text-xl font-bold px-4 py-2 rounded-full transition-colors ${

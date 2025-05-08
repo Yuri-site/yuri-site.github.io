@@ -44,10 +44,10 @@ const BooksTabs: React.FC = () => {
                 tabData.map((tab) => (
                     <button
                         key={tab._id}
-                        className={`sm:h-16 h-20 line-clamp-2 overflow-hidden text-ellipsis w-full sm:w-48 h-12 px-4 py-2 rounded-lg ${
+                        className={`font-bold shadow-md sm:h-16 h-20 line-clamp-2 transition-all duration-300 overflow-hidden text-ellipsis w-full sm:w-48 h-12 px-4 py-2 rounded-md ${
                             currentSeason === tab.title
-                                ? "bg-pink-500 text-white"
-                                : "bg-gray-200 text-gray-800"
+                                ? "bg-pink-400 text-white"
+                                : "bg-gray-100 text-gray-600 hover:bg-pink-200"
                         }`}
                         onClick={() => setSeason(tab.title)}
                     >
