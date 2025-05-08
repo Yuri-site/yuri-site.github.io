@@ -21,5 +21,5 @@ export interface BookTab {
     order: number;
 }
 export interface LoginResponse {
-  token: string;
+    token: string;
 }

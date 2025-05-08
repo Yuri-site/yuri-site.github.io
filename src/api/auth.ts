@@ -3,8 +3,8 @@ import { LoginResponse } from '../types';
 const API_URL = import.meta.env.VITE_API_URL as string;
 
 export const isAuthenticated = (): boolean => {
-  const token = localStorage.getItem("authToken");
-  return token != null;
+    const token = localStorage.getItem("authToken");
+    return token != null;
 };
 
 export const login = async (username: string, password: string): Promise<LoginResponse> => {
@@ -16,7 +16,7 @@ export const login = async (username: string, password: string): Promise<LoginRe
 };
 
 export const logout = (): void => {
-  localStorage.removeItem("authToken");
+    localStorage.removeItem("authToken");
 };
 
 
