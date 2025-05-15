@@ -24,6 +24,11 @@ const BooksTabs: React.FC = () => {
                         col_tabs: tab.col_tabs,
                     }));
                 setTabData(sortedTabs);
+
+                const stored = localStorage.getItem("currentSeason");
+                if (!stored && sortedTabs.length > 0) {
+                    setSeason(sortedTabs[0].title);
+                }
             } catch (err) {
                 setError("載入分類失敗");
                 console.error(err);

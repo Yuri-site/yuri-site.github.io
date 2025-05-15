@@ -114,7 +114,7 @@ const Header: React.FC<HeaderProps> = ({ logoText, navItems, dropdownTitle, drop
                                 {dropdownTitle} <span className="ml-1">▼</span>
                             </button>
                             <div
-                                className={`text-lg absolute bg-white text-gray-800 rounded shadow-md w-40 transition-opacity duration-300 ${
+                                className={`text-lg absolute bg-white text-gray-800 rounded-b-md rounded-tr-md shadow-md w-40 transition-opacity duration-300 ${
                                     isDropdownVisible ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
                                 }`}
                             >
