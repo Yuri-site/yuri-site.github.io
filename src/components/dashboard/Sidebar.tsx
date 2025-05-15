@@ -24,6 +24,10 @@ const navItem: NavItem[] = [
         title: "分類管理",
         link: "/dashboard/bookTab"
     },
+    {
+        title: "權限管理",
+        link: "/dashboard/user"
+    },
 ];
 
 const Sidebar: React.FC = () => {

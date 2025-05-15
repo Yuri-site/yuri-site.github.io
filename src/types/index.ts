@@ -23,3 +23,28 @@ export interface BookTab {
 export interface LoginResponse {
     token: string;
 }
+export interface User {
+    _id: string;
+    username: string;
+    email: string;
+    isAdmin: boolean;
+    canManageBooks: boolean;
+    canManageArticles: boolean;
+    canManageSlides: boolean;
+}
+
+// 登入成功回傳格式
+export interface LoginResponse {
+    token: string;
+    user: User;
+}
+
+export interface NewUserInput {
+    username: string;
+    email: string;
+    password: string;
+    isAdmin: boolean;
+    canManageBooks: boolean;
+    canManageArticles: boolean;
+    canManageSlides: boolean;
+}
