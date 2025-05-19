@@ -60,10 +60,10 @@ const UserManagement = () => {
             canManageArticles: false,
             canManageSlides: false,
         });
-        alert("✅ 使用者建立成功！");
+        alert("使用者建立成功！");
         } catch (error) {
         console.error("建立失敗:", error);
-        alert("❌ 使用者建立失敗！");
+        alert("使用者建立失敗！");
         }
     };
 
@@ -73,7 +73,7 @@ const UserManagement = () => {
         setUsers((prev) => prev.map((u) => (u._id === userId ? updated : u)));
         } catch (error) {
         console.error("更新權限失敗:", error);
-        alert("❌ 權限更新失敗！");
+        alert("權限更新失敗！");
         }
     };
 
@@ -83,7 +83,7 @@ const UserManagement = () => {
         setUsers((prev) => prev.map((u) => (u._id === userId ? updated : u)));
         } catch (error) {
         console.error("更新資料失敗:", error);
-        alert("❌ 使用者資料更新失敗！");
+        alert("使用者資料更新失敗！");
         }
     };
 
@@ -92,10 +92,10 @@ const UserManagement = () => {
         try {
         await apiDeleteUser(userId);
         setUsers((prev) => prev.filter((u) => u._id !== userId));
-        alert("✅ 使用者已刪除");
+        alert("使用者已刪除");
         } catch (error) {
         console.error("刪除使用者失敗:", error);
-        alert("❌ 無法刪除使用者");
+        alert("無法刪除使用者");
         }
     };
 
