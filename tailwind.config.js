@@ -7,6 +7,9 @@ export default {
     ],
     theme: {
         extend: {
+            dropShadow: {
+                glow: '0 0 6px rgba(255, 255, 255, 0.4)',
+            },
             keyframes: {
                 slideDown: {
                     '0%': {

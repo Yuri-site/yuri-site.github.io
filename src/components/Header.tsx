@@ -67,7 +67,7 @@ const Header: React.FC<HeaderProps> = ({ logoText, navItems, dropdownTitle, drop
             >
                 <div className="container mx-auto flex items-center justify-between py-4 px-6">
                     {/* Logo Section */}
-                    <div className="text-2xl font-bold">
+                    <div className={`text-2xl font-bold transition-all duration-300 ${isScrolled ? " drop-shadow-glow" : ""}`}>
                         <Link to="/">{logoText}</Link>
                     </div>
 
@@ -85,8 +85,9 @@ const Header: React.FC<HeaderProps> = ({ logoText, navItems, dropdownTitle, drop
                             <Link
                                 key={item.text}
                                 to={item.link}
-                                className={`text-xl font-bold px-4 py-2 rounded-full transition-colors ${
-                                    activeNav === item.link
+                                className={`text-xl font-bold px-4 py-2 rounded-full transition-colors transition-all duration-300 
+                                    ${isScrolled ? " drop-shadow-glow" : ""} 
+                                    ${activeNav === item.link
                                         ? "bg-white text-pink-500"
                                         : "hover:bg-white hover:text-pink-500"
                                 }`}

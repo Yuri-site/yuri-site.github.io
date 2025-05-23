@@ -12,6 +12,7 @@ import UserManagementPage from './pages/dashboard/UserManagement';
 import CarouselManagementPage from './pages/dashboard/CarouselManagement';
 import ProtectedRoute from './pages/ProtectedRoute';
 import Login from './pages/Login';
+import LogManagementPage from './pages/dashboard/LogManagement';
 
 const router = createHashRouter([
     {
@@ -90,6 +91,14 @@ const router = createHashRouter([
             element: (
             <Suspense fallback={<div>Loading...</div>}>
                 <UserManagementPage />
+            </Suspense>
+            ),
+        },
+        {
+            path: 'log',
+            element: (
+            <Suspense fallback={<div>Loading...</div>}>
+                <LogManagementPage />
             </Suspense>
             ),
         },
