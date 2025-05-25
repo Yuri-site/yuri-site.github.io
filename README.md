@@ -12,7 +12,7 @@
     * MongoDB Altas
 * 部屬
     * 前端部屬於 GitHub Pages
-    * 後端使用 Docker 容器化部，屬在個人NAS
+    * 後端使用 Docker 容器化，部屬在個人NAS
 
 ## Schema
 
