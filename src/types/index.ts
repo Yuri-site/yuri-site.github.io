@@ -33,7 +33,6 @@ export interface User {
     canManageSlides: boolean;
 }
 
-// 登入成功回傳格式
 export interface LoginResponse {
     token: string;
     user: User;

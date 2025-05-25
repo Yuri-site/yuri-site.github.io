@@ -17,7 +17,7 @@ axios.interceptors.request.use(
     }
 );
 
-// get all book tabs
+// Get all book tabs
 export const fetchBookTabs = async (): Promise<BookTab[]> => {
     try {
         const response = await axios.get<BookTab[]>(API_URL);
@@ -28,7 +28,7 @@ export const fetchBookTabs = async (): Promise<BookTab[]> => {
     }
 };
 
-// get specific book tab by id
+// Get specific book tab by id
 export const fetchBookTabById = async (id: string): Promise<BookTab> => {
     try {
         const response = await axios.get<BookTab>(`${API_URL}/${id}`);

@@ -1,6 +1,5 @@
-// src/data/bookListData.ts
 export interface Book {
-    _id: string; // MongoDB 的 ObjectId 作為字符串處理
+    _id: string;
     date: string;
     title: string;
     author: string;

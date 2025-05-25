@@ -22,11 +22,11 @@ const LogManagement = () => {
         if (!confirm("確定要還原此操作？")) return;
         try {
         await restoreLog(logId);
-        alert("✅ 還原成功！");
+        alert("還原成功！");
         await loadLogs();
         } catch (err) {
         console.error("還原失敗:", err);
-        alert("❌ 還原失敗");
+        alert("還原失敗");
         }
     };
 
@@ -87,7 +87,7 @@ const LogManagement = () => {
 
         {selectedLog && (
             <div className="mt-6 p-4 border bg-gray-50 rounded">
-            <h3 className="font-semibold mb-2">📄 操作詳細內容</h3>
+            <h3 className="font-semibold mb-2">操作詳細內容</h3>
             <p className="text-sm text-gray-700 mb-2">
                 <strong>操作時間：</strong> {new Date(selectedLog.timestamp).toLocaleString()}
                 <br />

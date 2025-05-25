@@ -13,7 +13,7 @@ const ColumnSelector: React.FC<ColumnSelectorProps> = ({
 }) => {
     const toggleColumn = (attr: string) => {
         const isFirst = attr === allAttributes[1];
-        if (isFirst) return; // 第一個欄位不可被取消
+        if (isFirst) return; // first selected column can't be cancelled
 
         if (selectedCols.includes(attr)) {
             handleColSelect(selectedCols.filter(col => col !== attr));

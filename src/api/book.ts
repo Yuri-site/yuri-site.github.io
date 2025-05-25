@@ -4,7 +4,7 @@ import { useAuthStore } from "../store/authStore";
 
 const API_URL = `${import.meta.env.VITE_API_URL}/api/v1/books`;
 
-// 設定全域 token
+// Global Token
 axios.interceptors.request.use(
     (config) => {
         const token = localStorage.getItem("authToken");
@@ -17,7 +17,7 @@ axios.interceptors.request.use(
     (error) => Promise.reject(error)
 );
 
-// ✅ 權限檢查器
+// Permission Check
 const checkPermission = () => {
     const user = useAuthStore.getState().user;
     if (!user || (!user.isAdmin && !user.canManageBooks)) {
@@ -25,7 +25,7 @@ const checkPermission = () => {
     }
 };
 
-// ✅ 取得所有書籍（不需權限）
+// Get all books
 export const fetchBooks = async (): Promise<Book[]> => {
     try {
         const response = await axios.get<Book[]>(API_URL);
@@ -36,7 +36,7 @@ export const fetchBooks = async (): Promise<Book[]> => {
     }
 };
 
-// ✅ 依 tab 查詢書籍（不需權限）
+// Get books by Tab
 export const fetchBooksByTab = async (tab: string): Promise<Book[]> => {
     try {
         const response = await axios.get<Book[]>(`${API_URL}/tab/${tab}`);
@@ -47,10 +47,10 @@ export const fetchBooksByTab = async (tab: string): Promise<Book[]> => {
     }
 };
 
-// ✅ 建立書籍（需權限）
+// Create a new Book, need permission check
 export const createBook = async (bookData: Book): Promise<Book> => {
     try {
-        checkPermission(); // ⬅ 檢查權限
+        checkPermission();
         const response = await axios.post<Book>(API_URL, bookData);
         return response.data;
     } catch (error) {
@@ -59,10 +59,10 @@ export const createBook = async (bookData: Book): Promise<Book> => {
     }
 };
 
-// ✅ 更新書籍（需權限）
+// Update Book, need permission check
 export const updateBook = async (id: string, bookData: Book): Promise<Book> => {
     try {
-        checkPermission(); // ⬅ 檢查權限
+        checkPermission();
         const response = await axios.put<Book>(`${API_URL}/${id}`, bookData);
         return response.data;
     } catch (error) {
@@ -71,10 +71,10 @@ export const updateBook = async (id: string, bookData: Book): Promise<Book> => {
     }
 };
 
-// ✅ 刪除書籍（需權限）
+// Delete Book, need permission check
 export const deleteBook = async (id: string): Promise<void> => {
     try {
-        checkPermission(); // ⬅ 檢查權限
+        checkPermission();
         await axios.delete(`${API_URL}/${id}`);
     } catch (error) {
         console.error("Error deleting book:", error);

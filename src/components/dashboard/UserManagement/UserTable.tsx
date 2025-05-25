@@ -9,7 +9,6 @@ interface Props {
 }
 
 const UserTable: React.FC<Props> = ({ users, onPermissionChange, onEdit, onDelete }) => {
-    // 用 keyof User 明確告訴 TS 這些是合法屬性名稱
     const permissionKeys: (keyof Pick<
         User,
         "isAdmin" | "canManageBooks" | "canManageArticles" | "canManageSlides"
@@ -45,8 +44,8 @@ const UserTable: React.FC<Props> = ({ users, onPermissionChange, onEdit, onDelet
                 </td>
                 ))}
                 <td className="border p-2">
-                <button onClick={() => onEdit(user)} className="text-blue-600 mr-2">✏️</button>
-                <button onClick={() => onDelete(user._id!)} className="text-red-500">🗑</button>
+                <button onClick={() => onEdit(user)} className="text-blue-600 mr-2">編輯</button>
+                <button onClick={() => onDelete(user._id!)} className="text-red-500">刪除</button>
                 </td>
             </tr>
             ))}

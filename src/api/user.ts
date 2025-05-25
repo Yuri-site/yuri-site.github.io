@@ -3,13 +3,13 @@ import { User } from "../types";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-// 取得所有使用者
+// Get all users
 export const fetchUsers = async (): Promise<User[]> => {
     const res = await axios.get<User[]>(`${API_URL}/api/v1/users`);
     return res.data;
 };
 
-// 建立新使用者
+// Create new user
 export const createUser = async (userData: {
     username: string;
     email: string;
@@ -26,7 +26,7 @@ export const createUser = async (userData: {
     return res.data.user;
 };
 
-// 更新使用者權限
+// Update specific user's permission
 export const updateUserPermissions = async (
     userId: string,
     updates: Partial<User>
@@ -38,7 +38,7 @@ export const updateUserPermissions = async (
     return res.data.user;
 };
 
-// 編輯使用者帳號/信箱
+// Update specific user's infomation
 export const updateUserInfo = async (
     userId: string,
     updates: { username: string; email: string }
@@ -50,7 +50,7 @@ export const updateUserInfo = async (
     return res.data.user;
 };
 
-// 刪除使用者
+// Delete user
 export const deleteUser = async (userId: string): Promise<void> => {
     await axios.delete(`${API_URL}/api/v1/users/${userId}`);
 };

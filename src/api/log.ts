@@ -16,7 +16,7 @@ export interface LogEntry {
     timestamp: string;
 }
 
-// ✅ 取得某個資料的 log
+// Get specific Log by Target
 export const fetchLogsByTarget = async (
     targetType: string,
     targetId: string
@@ -25,12 +25,12 @@ export const fetchLogsByTarget = async (
     return res.data;
 };
 
-// ✅ 還原某筆 log
+// Restore data by specific log
 export const restoreLog = async (logId: string): Promise<void> => {
     await axios.post(`${API_BASE}/restore/${logId}`);
 };
 
-// ✅ 管理員取得全部 log
+// Get all Logs if user's identity is Admin
 export const fetchAllLogs = async (): Promise<LogEntry[]> => {
     const res = await axios.get<LogEntry[]>(API_BASE);
     return res.data;
