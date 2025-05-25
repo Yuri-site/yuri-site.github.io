@@ -33,7 +33,7 @@
     * _id: ObjectId
     * userId: ObjectId,
     * actionType: "create" | "update" | "delete",
-    * targetType: "book" | "article" | "category",
+    * targetType: "book" | "bookTab",
     * targetId: ObjectId,
     * timestamp: ISODate,
     * beforeData: Object,
