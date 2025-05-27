@@ -14,6 +14,13 @@ import {
     deleteUser as apiDeleteUser,
 } from "../../api/user";
 
+const defaultPermissions = {
+    book: false,
+    bookTab: false,
+    article: false,
+    carousel: false,
+};
+
 const UserManagement = () => {
     const currentUser = useAuthStore((state) => state.user);
     const [users, setUsers] = useState<User[]>([]);
@@ -23,9 +30,7 @@ const UserManagement = () => {
         email: "",
         password: "",
         isAdmin: false,
-        canManageBooks: false,
-        canManageArticles: false,
-        canManageSlides: false,
+        permissions: { ...defaultPermissions },
     });
 
     const [editingUser, setEditingUser] = useState<User | null>(null);
@@ -56,9 +61,7 @@ const UserManagement = () => {
             email: "",
             password: "",
             isAdmin: false,
-            canManageBooks: false,
-            canManageArticles: false,
-            canManageSlides: false,
+            permissions: { ...defaultPermissions },
         });
         alert("使用者建立成功！");
         } catch (error) {
@@ -77,14 +80,17 @@ const UserManagement = () => {
         }
     };
 
-    const handleUpdateUser = async (userId: string, updates: { username: string; email: string }) => {
-        try {
-        const updated = await updateUserInfo(userId, updates);
-        setUsers((prev) => prev.map((u) => (u._id === userId ? updated : u)));
-        } catch (error) {
-        console.error("更新資料失敗:", error);
-        alert("使用者資料更新失敗！");
-        }
+    const handleUpdateUser = async (
+        userId: string,
+        updates: { username: string; email: string; permissions: User["permissions"] }
+        ) => {
+            try {
+            const updated = await updateUserInfo(userId, updates); // 確保此 API 支援 `permissions`
+            setUsers((prev) => prev.map((u) => (u._id === userId ? updated : u)));
+            } catch (error) {
+            console.error("更新使用者失敗:", error);
+            alert("使用者更新失敗！");
+            }
     };
 
     const handleDeleteUser = async (userId: string) => {
@@ -107,22 +113,23 @@ const UserManagement = () => {
 
     return (
         <div className="p-6">
-        <CreateUserForm newUser={newUser} setNewUser={setNewUser} onSubmit={handleCreateUser} />
+            <h2 className="text-xl font-bold mb-4">新增使用者</h2>
+            <CreateUserForm newUser={newUser} setNewUser={setNewUser} onSubmit={handleCreateUser} />
 
-        <h2 className="text-xl font-bold mb-4">使用者權限管理</h2>
+            <h2 className="text-xl font-bold mb-4">使用者權限管理</h2>
 
-        <UserTable
-            users={users}
-            onPermissionChange={handleUpdatePermissions}
-            onEdit={setEditingUser}
-            onDelete={handleDeleteUser}
-        />
+            <UserTable
+                users={users}
+                onPermissionChange={handleUpdatePermissions}
+                onEdit={setEditingUser}
+                onDelete={handleDeleteUser}
+            />
 
-        <EditUserModal
-            user={editingUser}
-            onClose={() => setEditingUser(null)}
-            onSave={handleUpdateUser}
-        />
+            <EditUserModal
+                user={editingUser}
+                onClose={() => setEditingUser(null)}
+                onSave={handleUpdateUser}
+            />
         </div>
     );
 };

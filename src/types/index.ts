@@ -22,20 +22,23 @@ export interface BookTab {
 }
 export interface LoginResponse {
     token: string;
+    user: User;
 }
+
+
+export interface PermissionSet {
+    book: boolean;
+    bookTab: boolean;
+    article: boolean;
+    carousel: boolean;
+}
+
 export interface User {
     _id: string;
     username: string;
     email: string;
     isAdmin: boolean;
-    canManageBooks: boolean;
-    canManageArticles: boolean;
-    canManageSlides: boolean;
-}
-
-export interface LoginResponse {
-    token: string;
-    user: User;
+    permissions: PermissionSet;
 }
 
 export interface NewUserInput {
@@ -43,7 +46,6 @@ export interface NewUserInput {
     email: string;
     password: string;
     isAdmin: boolean;
-    canManageBooks: boolean;
-    canManageArticles: boolean;
-    canManageSlides: boolean;
+    permissions: PermissionSet;
 }
+

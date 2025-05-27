@@ -1,7 +1,8 @@
 import axios from "axios";
-import { BookTab } from "../types/index";
+import { BookTab } from "../types";
+import { checkPermission } from "../utils/checkPermission";
 
-const API_URL = `${import.meta.env.VITE_API_URL as string}/api/v1/bookTab`;
+const API_URL = `${import.meta.env.VITE_API_URL}/api/v1/bookTab`;
 
 axios.interceptors.request.use(
     (config) => {
@@ -12,74 +13,42 @@ axios.interceptors.request.use(
         }
         return config;
     },
-    (error) => {
-        return Promise.reject(error);
-    }
+    (error) => Promise.reject(error)
 );
 
-// Get all book tabs
 export const fetchBookTabs = async (): Promise<BookTab[]> => {
-    try {
-        const response = await axios.get<BookTab[]>(API_URL);
-        return response.data;
-    } catch (error) {
-        console.error("Error fetching book tabs:", error);
-        throw error;
-    }
+    const response = await axios.get<BookTab[]>(API_URL);
+    return response.data;
 };
 
-// Get specific book tab by id
 export const fetchBookTabById = async (id: string): Promise<BookTab> => {
-    try {
-        const response = await axios.get<BookTab>(`${API_URL}/${id}`);
-        return response.data;
-    } catch (error) {
-        console.error("Error fetching book tab by ID:", error);
-        throw error;
-    } 
+    const response = await axios.get<BookTab>(`${API_URL}/${id}`);
+    return response.data;
 };
 
-// create a new book tab
 export const createBookTab = async (bookTabData: BookTab): Promise<BookTab> => {
-    try {
-        const response = await axios.post<BookTab>(API_URL, bookTabData);
-        return response.data;
-    } catch (error) {
-        console.error("Error creating book tab:", error);
-        throw error;
-    }
+    checkPermission("bookTab");
+    const response = await axios.post<BookTab>(API_URL, bookTabData);
+    return response.data;
 };
 
-// update a book tab
 export const updateBookTab = async (
     id: string,
     bookTabData: BookTab
     ): Promise<BookTab> => {
-    try {
-        const response = await axios.put<BookTab>(`${API_URL}/${id}`, bookTabData);
-        return response.data;
-    } catch (error) {
-        console.error("Error updating book tab:", error);
-        throw error;
-    }
+    checkPermission("bookTab");
+    const response = await axios.put<BookTab>(`${API_URL}/${id}`, bookTabData);
+    return response.data;
 };
 
-// delete a book tab
 export const deleteBookTab = async (id: string): Promise<void> => {
-    try {
-        await axios.delete(`${API_URL}/${id}`);
-    } catch (error) {
-        console.error("Error deleting book tab:", error);
-        throw error;
-    }
+    checkPermission("bookTab");
+    await axios.delete(`${API_URL}/${id}`);
 };
 
-// update Book Tab Order
-export const updateBookTabOrderList = async (orderList: { _id: string; order: number }[]) => {
-    try {
-        await axios.patch(`${API_URL}/orderList`, { orderList });
-        
-    } catch (err) {
-        console.error("更新排序失敗", err);
-    }
+export const updateBookTabOrderList = async (
+    orderList: { _id: string; order: number }[]
+    ): Promise<void> => {
+    checkPermission("bookTab");
+    await axios.patch(`${API_URL}/orderList`, { orderList });
 };

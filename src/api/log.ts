@@ -1,4 +1,5 @@
 import axios from "axios";
+import { checkAdmin } from "../utils/checkPermission";
 
 const API_BASE = `${import.meta.env.VITE_API_URL}/api/v1/logs`;
 
@@ -16,7 +17,6 @@ export interface LogEntry {
     timestamp: string;
 }
 
-// Get specific Log by Target
 export const fetchLogsByTarget = async (
     targetType: string,
     targetId: string
@@ -25,13 +25,13 @@ export const fetchLogsByTarget = async (
     return res.data;
 };
 
-// Restore data by specific log
 export const restoreLog = async (logId: string): Promise<void> => {
+    checkAdmin();
     await axios.post(`${API_BASE}/restore/${logId}`);
 };
 
-// Get all Logs if user's identity is Admin
 export const fetchAllLogs = async (): Promise<LogEntry[]> => {
+    checkAdmin();
     const res = await axios.get<LogEntry[]>(API_BASE);
     return res.data;
 };
