@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { LogEntry } from "../../../api/log";
-import { fetchBookTabById } from "../../../api/bookTab"; // 這裡記得根據實際路徑調整
+import { fetchBookTabById } from "../../../api/bookTab";
 
 interface Props {
     log: LogEntry;
@@ -26,8 +26,15 @@ const LogDetailModal: React.FC<Props> = ({ log, onClose }) => {
     const [tabNameMap, setTabNameMap] = useState<Record<string, string>>({});
 
     useEffect(() => {
-        const ids = new Set<string>();
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === "Escape") onClose();
+        };
+        window.addEventListener("keydown", handleKeyDown);
+        return () => window.removeEventListener("keydown", handleKeyDown);
+    }, [onClose]);
 
+    useEffect(() => {
+        const ids = new Set<string>();
         const collectIds = (data?: Record<string, unknown>) => {
             if (data?.tabs && Array.isArray(data.tabs)) {
                 data.tabs.forEach((id) => typeof id === "string" && ids.add(id));
@@ -75,62 +82,64 @@ const LogDetailModal: React.FC<Props> = ({ log, onClose }) => {
     };
 
     return (
-        <div className="mt-6 p-6 border bg-gray-50 rounded-lg shadow mx-auto ">
-            <h3 className="text-lg font-bold mb-3 text-gray-800">操作詳細內容</h3>
-            <p className="text-md text-gray-700 mb-4 leading-relaxed">
-                <strong>操作時間：</strong> {new Date(log.timestamp).toLocaleString()}
-                <br />
-                <strong>操作者：</strong> {log.userId?.username}
-                <br />
-                <strong>操作類型：</strong> {log.actionType}
-                <br />
-                <strong>資料類型：</strong> {log.targetType}
-                <br />
-                <strong>資料 ID：</strong> {log.targetId}
-            </p>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+            <div className="bg-white p-6 rounded-lg shadow-lg max-w-6xl w-full max-h-[90vh] overflow-y-auto">
+                <h3 className="text-lg font-bold mb-3 text-gray-800">操作詳細內容</h3>
+                <p className="text-md text-gray-700 mb-4 leading-relaxed">
+                    <strong>操作時間：</strong> {new Date(log.timestamp).toLocaleString()}
+                    <br />
+                    <strong>操作者：</strong> {log.userId?.username}
+                    <br />
+                    <strong>操作類型：</strong> {log.actionType}
+                    <br />
+                    <strong>資料類型：</strong> {log.targetType}
+                    <br />
+                    <strong>資料 ID：</strong> {log.targetId}
+                </p>
 
-            <div className="grid grid-cols-2 gap-4 text-sm">
-                <div>
-                    <h4 className="font-bold text-red-500 mb-2">更改前</h4>
-                    <table className="w-full border text-left">
-                        <tbody>
-                            {Object.entries(log.beforeData || {}).map(([key, value]) => {
-                                const color = changedKeys.includes(key) ? "bg-red-100" : "";
-                                return (
-                                    <tr key={key}>
-                                        <td className={`px-4 p-2 font-medium ${color}`}>{key}</td>
-                                        {renderCell(key, value, color)}
-                                    </tr>
-                                );
-                            })}
-                        </tbody>
-                    </table>
+                <div className="grid grid-cols-2 gap-4 text-sm">
+                    <div>
+                        <h4 className="font-bold text-red-500 mb-2">更改前</h4>
+                        <table className="w-full border text-left">
+                            <tbody>
+                                {Object.entries(log.beforeData || {}).map(([key, value]) => {
+                                    const color = changedKeys.includes(key) ? "bg-red-100" : "";
+                                    return (
+                                        <tr key={key}>
+                                            <td className={`px-4 p-2 font-medium ${color}`}>{key}</td>
+                                            {renderCell(key, value, color)}
+                                        </tr>
+                                    );
+                                })}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                        <h4 className="font-bold text-green-500 mb-2">更改後</h4>
+                        <table className="w-full border text-left">
+                            <tbody>
+                                {Object.entries(log.afterData || {}).map(([key, value]) => {
+                                    const color = changedKeys.includes(key) ? "bg-green-100" : "";
+                                    return (
+                                        <tr key={key}>
+                                            <td className={`px-4 p-2 font-medium ${color}`}>{key}</td>
+                                            {renderCell(key, value, color)}
+                                        </tr>
+                                    );
+                                })}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                <div>
-                    <h4 className="font-bold text-green-500 mb-2">更改後</h4>
-                    <table className="w-full border text-left">
-                        <tbody>
-                            {Object.entries(log.afterData || {}).map(([key, value]) => {
-                                const color = changedKeys.includes(key) ? "bg-green-100" : "";
-                                return (
-                                    <tr key={key}>
-                                        <td className={`px-4 p-2 font-medium ${color}`}>{key}</td>
-                                        {renderCell(key, value, color)}
-                                    </tr>
-                                );
-                            })}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
 
-            <div className="text-right mt-4">
-                <button
-                    className="bg-red-200 rounded-md p-2 text-black border-gray-600 border hover:bg-red-600 hover:text-white"
-                    onClick={onClose}
-                >
-                    關閉
-                </button>
+                <div className="text-right mt-4">
+                    <button
+                        className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+                        onClick={onClose}
+                    >
+                        關閉
+                    </button>
+                </div>
             </div>
         </div>
     );

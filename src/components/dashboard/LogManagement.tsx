@@ -38,17 +38,17 @@ const LogManagement = () => {
 
     return (
         <div className="p-6">
-        <h2 className="text-2xl font-bold mb-6 text-black">操作歷史紀錄</h2>
+            {selectedLog && <LogDetailModal log={selectedLog} onClose={() => setSelectedLog(null)} />}
+            <h2 className="text-2xl font-bold mb-6 text-black mt-4">操作歷史紀錄</h2>
 
-        {loading ? (
-            <p>載入中...</p>
-        ) : logs.length === 0 ? (
-            <p className="text-gray-500">沒有歷史紀錄</p>
-        ) : (
-            <LogTable logs={logs} onView={setSelectedLog} onRestore={handleRestore} />
-        )}
+            {loading ? (
+                <p>載入中...</p>
+            ) : logs.length === 0 ? (
+                <p className="text-gray-500">沒有歷史紀錄</p>
+            ) : (
+                <LogTable logs={logs} onView={setSelectedLog} onRestore={handleRestore} />
+            )}
 
-        {selectedLog && <LogDetailModal log={selectedLog} onClose={() => setSelectedLog(null)} />}
         </div>
     );
 };
