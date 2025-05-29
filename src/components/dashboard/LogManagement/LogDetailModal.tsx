@@ -12,12 +12,15 @@ const formatValue = (value: unknown): string => {
 };
 
 const getChangedKeys = (
-    before: Record<string, unknown> = {},
-    after: Record<string, unknown> = {}
+    before?: Record<string, unknown> | null,
+    after?: Record<string, unknown> | null
 ): string[] => {
-    const keys = new Set([...Object.keys(before), ...Object.keys(after)]);
+    const safeBefore = before ?? {};
+    const safeAfter = after ?? {};
+
+    const keys = new Set([...Object.keys(safeBefore), ...Object.keys(safeAfter)]);
     return Array.from(keys).filter((key) => {
-        return formatValue(before[key]) !== formatValue(after[key]);
+        return formatValue(safeBefore[key]) !== formatValue(safeAfter[key]);
     });
 };
 
@@ -25,6 +28,7 @@ const LogDetailModal: React.FC<Props> = ({ log, onClose }) => {
     const changedKeys = getChangedKeys(log.beforeData, log.afterData);
     const [tabNameMap, setTabNameMap] = useState<Record<string, string>>({});
 
+    // Esc 鍵關閉視窗
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
             if (e.key === "Escape") onClose();
@@ -33,6 +37,7 @@ const LogDetailModal: React.FC<Props> = ({ log, onClose }) => {
         return () => window.removeEventListener("keydown", handleKeyDown);
     }, [onClose]);
 
+    // 取得 tabs 名稱
     useEffect(() => {
         const ids = new Set<string>();
         const collectIds = (data?: Record<string, unknown>) => {
@@ -102,7 +107,7 @@ const LogDetailModal: React.FC<Props> = ({ log, onClose }) => {
                         <h4 className="font-bold text-red-500 mb-2">更改前</h4>
                         <table className="w-full border text-left">
                             <tbody>
-                                {Object.entries(log.beforeData || {}).map(([key, value]) => {
+                                {Object.entries(log.beforeData ?? {}).map(([key, value]) => {
                                     const color = changedKeys.includes(key) ? "bg-red-100" : "";
                                     return (
                                         <tr key={key}>
@@ -118,7 +123,7 @@ const LogDetailModal: React.FC<Props> = ({ log, onClose }) => {
                         <h4 className="font-bold text-green-500 mb-2">更改後</h4>
                         <table className="w-full border text-left">
                             <tbody>
-                                {Object.entries(log.afterData || {}).map(([key, value]) => {
+                                {Object.entries(log.afterData ?? {}).map(([key, value]) => {
                                     const color = changedKeys.includes(key) ? "bg-green-100" : "";
                                     return (
                                         <tr key={key}>
