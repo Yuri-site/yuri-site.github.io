@@ -1,27 +1,27 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { login } from '../api/auth';
+import { useState } from "react";
+import { login } from "../api/auth";
 
 const LoginPage: React.FC = () => {
-    const [username, setUsername] = useState<string>('');
-    const [password, setPassword] = useState<string>('');
-    const navigate = useNavigate();
+    const [username, setUsername] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
 
     const handleLogin = async (): Promise<void> => {
         try {
             const data = await login(username, password);
-            localStorage.setItem('authToken', data.token);
-            navigate('/dashboard');
+            localStorage.setItem("authToken", data.token);
+            window.location.href = "/#/dashboard";
         } catch (error) {
-            console.error('Login failed:', error);
-            alert('Login failed. Please check your credentials.');
+            console.error("Login failed:", error);
+            alert("Login failed. Please check your credentials.");
         }
     };
 
     return (
         <div className="flex justify-center items-center min-h-screen bg-gray-100">
             <div className="bg-white p-8 rounded-lg shadow-lg w-96">
-                <h2 className="text-3xl font-bold text-center text-indigo-600 mb-6">Login</h2>
+                <h2 className="text-3xl font-bold text-center text-slate-600 mb-6">
+                    百合坂管理系統
+                </h2>
                 <div className="mb-4">
                     <input
                         type="text"
@@ -45,7 +45,7 @@ const LoginPage: React.FC = () => {
                         onClick={handleLogin}
                         className="w-full py-2 px-4 bg-indigo-600 text-white font-semibold rounded-md hover:bg-indigo-700 transition"
                     >
-                        Login
+                        登入
                     </button>
                 </div>
             </div>

@@ -1,23 +1,30 @@
+import { useState } from "react";
 import Sidebar from "../../components/dashboard/Sidebar";
 import { Outlet } from "react-router-dom";
 
 const DashboardLayout = () => {
+    const [isCollapsed, setIsCollapsed] = useState(false);
+
     return (
-        <div className="flex h-screen">
+        <>
             {/* Sidebar fixed */}
-            <div className="h-screen w-56 bg-slate-800 shadow-cyan-500/50">
-                <Sidebar />
-            </div>
+            <Sidebar
+                isCollapsed={isCollapsed}
+                setIsCollapsed={setIsCollapsed}
+            />
 
             {/* Outlet scrollable */}
-            <div className="flex-1 overflow-y-auto">
-                <main className="p-4">
+            <div
+                className={`transition-all duration-300 ${
+                    isCollapsed ? "ml-20" : "ml-64"
+                } h-screen overflow-y-auto bg-slate-50`}
+            >
+                <main className="p-6 lg:p-8">
                     <Outlet />
                 </main>
             </div>
-        </div>
+        </>
     );
 };
 
 export default DashboardLayout;
-

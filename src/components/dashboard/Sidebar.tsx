@@ -1,85 +1,97 @@
-import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { logout } from '../../api/auth';
+import { logout } from "../../api/auth";
+
+interface SidebarProps {
+    isCollapsed: boolean;
+    setIsCollapsed: (collapsed: boolean) => void;
+}
 
 interface NavItem {
     title: string;
     link: string;
+    icon: string;
 }
 
-const navItem: NavItem[] = [
-    {
-        title: "主頁管理",
-        link: "/dashboard/home"
-    },
-    {
-        title: "文章管理",
-        link: "/dashboard/article"
-    },
-    {
-        title: "書籍管理",
-        link: "/dashboard/book"
-    },
-    {
-        title: "分類管理",
-        link: "/dashboard/bookTab"
-    },
+const navItems: NavItem[] = [
+    { title: "主頁管理", link: "/dashboard/home", icon: "home" },
+    { title: "輪播片管理", link: "/dashboard/carousel", icon: "slideshow" },
+    { title: "文章管理", link: "/dashboard/article", icon: "article" },
+    { title: "書籍管理", link: "/dashboard/book", icon: "menu_book" },
+    { title: "分類管理", link: "/dashboard/bookTab", icon: "category" },
     {
         title: "權限管理",
-        link: "/dashboard/user"
+        link: "/dashboard/user",
+        icon: "admin_panel_settings",
     },
-    {
-        title: "操作管理",
-        link: "/dashboard/log"
-    },
+    { title: "操作管理", link: "/dashboard/log", icon: "settings" },
 ];
 
-const Sidebar: React.FC = () => {
+const Sidebar: React.FC<SidebarProps> = ({ isCollapsed, setIsCollapsed }) => {
     const location = useLocation();
     const navigate = useNavigate();
-    const [activeNav, setActiveNav] = useState<string | null>(null);
-
-    useEffect(() => {
-        setActiveNav(location.pathname);
-    }, [location.pathname]);
 
     const handleLogout = () => {
         logout();
-        navigate('/login');
+        navigate("/login");
     };
 
     return (
-        <div className="h-[100vh] flex flex-col justify-between text-white">
-            <div>
-                <h1 className="justify-center items-center flex pt-12 text-2xl font-bold">
-                    Dashboard
-                </h1>
-                <nav className="mt-8">
-                    <ul>
-                        {navItem.map((item) => (
-                            <li key={item.link} className="mb-2">
-                                <Link
-                                    to={item.link}
-                                    className={`block px-6 py-3 transition-colors duration-300 ${
-                                        activeNav === item.link
-                                            ? "bg-slate-600 text-white"
-                                            : "hover:bg-slate-700"
-                                    }`}
-                                >
-                                    {item.title}
-                                </Link>
-                            </li>
-                        ))}
-                    </ul>
-                </nav>
+        <aside
+            className={`fixed top-0 left-0 h-screen z-40 bg-white shadow-lg flex flex-col p-4 space-y-6 transition-all duration-300 ${
+                isCollapsed ? "w-20" : "w-64"
+            }`}
+        >
+            <div
+                className={`sidebar-header flex ${
+                    isCollapsed ? "justify-center" : "justify-between"
+                } items-center mb-4`}
+            >
+                {!isCollapsed && (
+                    <h1 className="text-xl font-bold text-slate-800">
+                        圖書管理系統
+                    </h1>
+                )}
+                <button
+                    className="p-1 rounded-md hover:bg-slate-200"
+                    onClick={() => setIsCollapsed(!isCollapsed)}
+                >
+                    <span className="material-icons text-slate-600">
+                        {isCollapsed ? "menu" : "menu_open"}
+                    </span>
+                </button>
             </div>
+
+            <nav className="flex-1 space-y-2">
+                {navItems.map((item) => (
+                    <Link
+                        key={item.link}
+                        to={item.link}
+                        className={`nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors ${
+                            location.pathname === item.link
+                                ? "bg-blue-500 text-white shadow-md"
+                                : "text-slate-700 hover:bg-slate-200"
+                        }`}
+                    >
+                        <span className="material-icons">{item.icon}</span>
+                        {!isCollapsed && (
+                            <p className="nav-text text-sm font-medium">
+                                {item.title}
+                            </p>
+                        )}
+                    </Link>
+                ))}
+            </nav>
+
             <button
                 onClick={handleLogout}
-                className="w-full py-3 mt-auto bg-slate-100 text-black font-semibold hover:bg-red-200 transition"
+                className="nav-item flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-700 hover:bg-red-200 transition-colors"
             >
-                登出
+                <span className="material-icons">logout</span>
+                {!isCollapsed && (
+                    <p className="nav-text text-sm font-medium">登出</p>
+                )}
             </button>
-        </div>
+        </aside>
     );
 };
 
